@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Restaurants · Navira Hub</title><link rel="stylesheet" href="/static/admin.css"></head>
+<body>
+<header class="top">
+  <a class="home" href="/admin"><span class="logo-mark sm">N</span> Navira Hub</a>
+  <span class="grow"></span>
+  <a class="btn hide-sm" href="/admin/system">Backups &amp; tools</a>
+  <a class="btn" href="/admin/festivals">Festivals</a>
+  <a class="btn" href="/admin/messages">Messages{% if unread %} <span class="badge">{{ unread }}</span>{% endif %}</a>
+  <a class="btn quiet" href="/admin/logout">Log out</a>
+</header>
+<main class="page">
+  <div class="page-head">
+    <div><h1>Restaurants</h1><p class="muted">{{ cards|length }} restaurant{{ '' if cards|length == 1 else 's' }}: {{ cards|selectattr('live')|rejectattr('offline')|list|length }} live, {{ cards|length - (cards|selectattr('live')|rejectattr('offline')|list|length) }} not live. Open one to edit its website, chat and channels.</p></div>
+    <button class="btn primary" type="button" onclick="document.getElementById('newDlg').showModal()">+ Add restaurant</button>
+  </div>
+  {% if request.args.get('error') %}<p class="alert">{{ request.args.get('error') }}</p>{% endif %}
+  {% if not ai_ready %}<p class="alert warn">The AI is not connected: add ANTHROPIC_API_KEY to the Environment Variables. Websites still work, but the chat and the AI editor will not.</p>{% endif %}
+
+  {% if not cards %}
+  <div class="empty-state"><h2>No restaurants yet</h2><p class="muted">Add your first restaurant, then upload its menu photo and let the AI build the website.</p></div>
+  {% endif %}
+
+  {% if cards %}
+  <div class="filters">
+    <input id="search" class="search" type="search" placeholder="Search restaurants…" aria-label="Search restaurants">
+    <select id="fCountry" aria-label="Filter by country">
+      <option value="">All countries</option>
+      {% for k in used %}<option value="{{ k }}">{{ k }}</option>{% endfor %}
+      {% if no_country %}<option value="-">No country set</option>{% endif %}
+    </select>
+    <select id="fRegion" aria-label="Filter by region"><option value="">All regions</option></select>
+    <select id="fStatus" aria-label="Filter by status">
+      <option value="">Live and not live</option><option value="live">Live only</option><option value="off">Not live only</option>
+    </select>
+    <span class="muted" id="fCount"></span>
+  </div>
+  <p class="empty-state" id="fNone" hidden>No restaurants match these filters.</p>
+  {% endif %}
+  <div class="cards">
+    {% for c in cards %}
+    <article class="card" data-name="{{ c.name|lower }} {{ c.id }} {{ c.region|lower }} {{ c.country|lower }}" data-country="{{ c.country }}" data-region="{{ c.region }}" data-live="{{ 'live' if c.live and not c.offline else 'off' }}">
+      <a class="card-top" href="/admin/r/{{ c.id }}" style="background:{{ c.color }}">
+        {% if c.logo %}<img src="{{ c.logo }}" alt="">{% else %}<span class="initial">{{ c.name[:1] }}</span>{% endif %}
+      </a>
+      <div class="card-body">
+        <h2><a href="/admin/r/{{ c.id }}">{{ c.name }}</a></h2>
+        <p class="pills">
+          {% if c.offline %}<span class="pill red">● Not live (switched off)</span>
+          {% elif not c.live %}<span class="pill grey">● Not live yet</span>
+          {% else %}<span class="pill green">● Live</span>{% endif %}
+          {% if c.live and c.unpublished %}<span class="pill amber">Changes not published</span>{% endif %}
+          <span class="pill plain">{{ ((c.region ~ ", ") if c.region else "") ~ c.country if c.country else "No country set" }}</span>
+          <span class="pill plain">{{ c.dishes }} dishes</span>
+          {% if c.booking %}<span class="pill plain">Booking on</span>{% endif %}
+        </p>
+        <p class="muted" style="font-size:12.5px;margin:8px 0 0">Last 30 days: {{ c.stats.visitors }} visitors · {{ c.stats.chats }} chat messages · {{ c.stats.bookings }} bookings</p>
+        <div class="switch-row">
+          <span class="switch-title">AI assistant</span>
+          {% for ch, label in [('website','Website'),('facebook','Facebook'),('instagram','Instagram'),('whatsapp','WhatsApp')] %}
+          <label class="switch" title="Turn the AI {{ 'off' if c.ai[ch] else 'on' }} for {{ label }}">
+            <input type="checkbox" data-switch="{{ ch }}" data-rid="{{ c.id }}" {{ 'checked' if c.ai[ch] }}>
+            <span class="track"></span><span class="lbl">{{ label }}</span>
+          </label>
+          {% endfor %}
+        </div>
+        <div class="card-actions">
+          <a class="btn primary" href="/admin/r/{{ c.id }}">Edit</a>
+          {% if c.live and not c.offline %}<a class="btn" href="/s/{{ c.id }}/" target="_blank" rel="noopener">View website</a>{% endif %}
+          <button class="btn quiet" type="button" data-copy="{{ c.id }}" data-copy-name="{{ c.name }}">Copy</button>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</main>
+
+<dialog id="newDlg" class="dlg">
+  <form method="post" action="/admin/new">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <h2>Add a restaurant</h2>
+    <label for="nName">Restaurant name</label>
+    <input id="nName" name="name" required maxlength="80" placeholder="The Red Lion">
+    <label for="nId">Short name for the web address</label>
+    <input id="nId" name="id" required pattern="[a-z0-9][a-z0-9\-]{1,39}" maxlength="40" placeholder="redlion">
+    <p class="hint">Small letters, numbers and dashes. The website will be at /s/<b id="nPrev">redlion</b>/</p>
+    <label for="nCountry">Which country is the restaurant in?</label>
+    <select id="nCountry" name="country" required>
+      <option value="">Choose a country…</option>
+      {% for k in countries %}<option value="{{ k }}"{% if k == "United Kingdom" %} selected{% endif %}>{{ k }}</option>{% endfor %}
+    </select>
+    <label for="nRegion">Region</label>
+    <input id="nRegion" name="region" maxlength="60" list="nRegions" placeholder="e.g. West Midlands" autocomplete="off">
+    <datalist id="nRegions"></datalist>
+    <p class="hint">Pick one from the list or type your own. You can change both later in “Name &amp; texts”.</p>
+    <div class="dlg-actions">
+      <button class="btn" type="button" onclick="this.closest('dialog').close()">Cancel</button>
+      <button class="btn primary" type="submit">Create</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="copyDlg" class="dlg">
+  <form method="post" id="copyForm">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
+    <h2>Copy <span id="cFrom"></span></h2>
+    <p class="hint">Makes a new restaurant with the same design, texts, menu, photos and AI knowledge. Change what is different, then publish. Customer messages are not copied, and the Navira slug, domain and channel IDs start empty.</p>
+    <label for="cName">Name of the new restaurant</label>
+    <input id="cName" name="name" required maxlength="80">
+    <label for="cId">Short name for the web address</label>
+    <input id="cId" name="id" required pattern="[a-z0-9][a-z0-9\-]{1,39}" maxlength="40">
+    <div class="dlg-actions">
+      <button class="btn" type="button" onclick="this.closest('dialog').close()">Cancel</button>
+      <button class="btn primary" type="submit">Make the copy</button>
+    </div>
+  </form>
+</dialog>
+<p class="muted" style="text-align:center;padding:0 16px 30px"><a href="/admin/system">Backups, numbers &amp; tools</a></p>
+<div id="toast" class="toast" role="status"></div>
+<script>
+const CSRF = {{ csrf|tojson }};
+const nName = document.getElementById("nName"), nId = document.getElementById("nId"), nPrev = document.getElementById("nPrev");
+let touched = false;
+nId.addEventListener("input", () => { touched = true; nPrev.textContent = nId.value || "…"; });
+nName.addEventListener("input", () => { if (touched) return; nId.value = nName.value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40); nPrev.textContent = nId.value || "…"; });
+function toast(t, bad) { const el = document.getElementById("toast"); el.textContent = t; el.className = "toast show" + (bad ? " bad" : ""); clearTimeout(el._t); el._t = setTimeout(() => (el.className = "toast"), 3500); }
+const cName = document.getElementById("cName"), cId = document.getElementById("cId");
+document.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", () => {
+  document.getElementById("copyForm").action = `/admin/r/${b.dataset.copy}/copy`;
+  document.getElementById("cFrom").textContent = b.dataset.copyName;
+  cName.value = ""; cId.value = ""; document.getElementById("copyDlg").showModal(); cName.focus();
+}));
+cName.addEventListener("input", () => { cId.value = cName.value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40); });
+/* filters: search, country, region, live or not */
+const REGIONS = {{ regions|tojson }}, USED = {{ used|tojson }};
+const nCountry = document.getElementById("nCountry"), nRegions = document.getElementById("nRegions");
+const fillRegions = () => { nRegions.replaceChildren(...[...new Set([...(REGIONS[nCountry.value] || []), ...(USED[nCountry.value] || [])])].map((r) => Object.assign(document.createElement("option"), { value: r }))); };
+nCountry.addEventListener("change", fillRegions); fillRegions();
+const search = document.getElementById("search"), fCountry = document.getElementById("fCountry"), fRegion = document.getElementById("fRegion"), fStatus = document.getElementById("fStatus");
+if (search) {
+  const cardsEl = [...document.querySelectorAll(".card")];
+  const regionOptions = () => {
+    const want = fCountry.value === "-" ? "" : fCountry.value, keep = fRegion.value;
+    const list = [...new Set(cardsEl.filter((c) => !fCountry.value || c.dataset.country === want).map((c) => c.dataset.region).filter(Boolean))].sort();
+    fRegion.replaceChildren(new Option("All regions", ""), ...list.map((r) => new Option(r, r)));
+    fRegion.value = list.includes(keep) ? keep : "";
+    fRegion.disabled = !list.length;
+  };
+  const apply = () => {
+    const q = search.value.trim().toLowerCase(), co = fCountry.value, re = fRegion.value, st = fStatus.value;
+    let n = 0;
+    cardsEl.forEach((c) => {
+      const ok = (!q || c.dataset.name.includes(q)) && (!co || (co === "-" ? !c.dataset.country : c.dataset.country === co)) && (!re || c.dataset.region === re) && (!st || c.dataset.live === st);
+      c.hidden = !ok; if (ok) n++;
+    });
+    document.getElementById("fCount").textContent = n === cardsEl.length ? "" : `Showing ${n} of ${cardsEl.length}`;
+    document.getElementById("fNone").hidden = n > 0;
+    try { sessionStorage.setItem("nh-filter", JSON.stringify([co, re, st])); } catch (_) {}
+  };
+  try { const [co, re, st] = JSON.parse(sessionStorage.getItem("nh-filter") || "[]"); if ([...fCountry.options].some((o) => o.value === co)) fCountry.value = co; regionOptions(); if ([...fRegion.options].some((o) => o.value === re)) fRegion.value = re; if (st) fStatus.value = st; } catch (_) { regionOptions(); }
+  fCountry.addEventListener("change", () => { regionOptions(); apply(); });
+  [fRegion, fStatus].forEach((el) => el.addEventListener("change", apply));
+  search.addEventListener("input", apply);
+  apply();
+}
+document.querySelectorAll("[data-switch]").forEach((box) => box.addEventListener("change", async () => {
+  try {
+    const r = await fetch(`/admin/r/${box.dataset.rid}/switch`, { method: "POST", headers: { "Content-Type": "application/json", "X-CSRF-Token": CSRF }, body: JSON.stringify({ channel: box.dataset.switch, on: box.checked }) });
+    const j = await r.json(); if (!j.ok) throw new Error(j.error);
+    toast(`AI turned ${box.checked ? "on" : "off"} for ${box.dataset.switch}`);
+  } catch (e) { box.checked = !box.checked; toast(e.message || "Could not change the switch", true); }
+}));
+</script>
+</body></html>

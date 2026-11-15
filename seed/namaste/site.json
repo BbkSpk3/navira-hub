@@ -1,0 +1,1761 @@
+{
+  "name": "Namaste Wolverhampton",
+  "tagline": "Nepalese & Indian Restaurant",
+  "headline": "Authentic Nepalese & Indian food in Wolverhampton",
+  "intro": "The first Nepalese & Indian fusion restaurant in Wolverhampton. Momo, curries, biryani and a stunning cocktail bar, cooked with love by chefs with over 20 years' experience.",
+  "about": "At Namaste we bring the flavours of Nepal and India together. Every dish is crafted with care, from steaming momo to rich curries and fragrant biryanis. Join us for a quiet dinner, a family celebration or cocktails at the bar.",
+  "logo": "photos/logo.webp",
+  "hero_image": "photos/hero.jpg",
+  "about_image": "photos/interior.jpg",
+  "theme": {
+    "style": "elegant",
+    "color": "#25425c",
+    "accent": "#c49a3c"
+  },
+  "contact": {
+    "phone": "01902 939380",
+    "email": "namaste.restaurant2020@gmail.com",
+    "address": "480 Dudley Road, Wolverhampton WV2 3AF"
+  },
+  "hours": [
+    [
+      "Monday",
+      "15:00",
+      "22:00"
+    ],
+    [
+      "Tuesday",
+      "15:00",
+      "22:00"
+    ],
+    [
+      "Wednesday",
+      "15:00",
+      "22:00"
+    ],
+    [
+      "Thursday",
+      "15:00",
+      "22:00"
+    ],
+    [
+      "Friday",
+      "15:00",
+      "22:30"
+    ],
+    [
+      "Saturday",
+      "13:00",
+      "22:30"
+    ],
+    [
+      "Sunday",
+      "13:00",
+      "22:00"
+    ]
+  ],
+  "hours_note": "Christmas Day: 3pm - 10pm with festive set menus.",
+  "links": {
+    "order_url": "https://order.namastewolverhampton.co.uk",
+    "booking_url": "https://reserve.naviratechnology.com/rest/namastewolverhampton",
+    "facebook": "",
+    "instagram": "",
+    "google_reviews": ""
+  },
+  "chat": {
+    "navira_slug": "naviratest",
+    "max_party": 15,
+    "days_ahead": 60,
+    "assistant_name": "Namaste assistant",
+    "greeting": "Namaste! 🙏 I can book you a table, or answer questions about our menu, offers and opening times.",
+    "quick_replies": [
+      "Book a table",
+      "Opening times",
+      "Vegan options",
+      "Today's offers"
+    ],
+    "extra_info": "Free on-site parking, wheelchair accessible, private entrance for events.\nHead chef: Krishana Prasad Sapkota. General manager: Bishnu Lamichhane.\nMomo come in Chicken, Veg or Paneer; styles Steamed, Fried, Chilli, Kothey or Jhol.\nChristmas Day set menus per person (3pm-10pm): Veg £30, Vegan £35, Non veg £45, Sea food £55. Each includes welcome drink, appetizer, starter platter, main, two sides and dessert.",
+    "facebook_page_id": "",
+    "instagram_id": "",
+    "ai": {
+      "website": true,
+      "facebook": true,
+      "instagram": true
+    }
+  },
+  "offers": [
+    {
+      "title": "15% off",
+      "text": "Collection orders over £20"
+    },
+    {
+      "title": "Loyalty points",
+      "text": "On every online order. Sign up when you order to claim them."
+    },
+    {
+      "title": "£10 off",
+      "text": "Your next dine-in visit, Monday to Thursday"
+    },
+    {
+      "title": "2 for £14",
+      "text": "Cocktails daily until 7pm"
+    },
+    {
+      "title": "Free venue",
+      "text": "Private party hall for up to 40-45 guests"
+    }
+  ],
+  "features": [
+    {
+      "title": "Dine in",
+      "text": "Nepalese and Indian dishes in a welcoming dining room.",
+      "image": "photos/dining.jpeg"
+    },
+    {
+      "title": "Order online",
+      "text": "Collection orders with 15% off over £20 and loyalty points.",
+      "image": "photos/curry.jpg"
+    },
+    {
+      "title": "Cocktail bar",
+      "text": "Start or finish your evening at our bar. 2 cocktails for £14 until 7pm.",
+      "image": "photos/cocktail.jpg"
+    },
+    {
+      "title": "Private events",
+      "text": "Private dining for 35 and a party hall for 40-45 guests. The venue is free.",
+      "image": "photos/party.jpg"
+    },
+    {
+      "title": "Vegan & kids menus",
+      "text": "A full separate vegan menu, plus smaller favourites for kids.",
+      "image": "photos/thali.jpg"
+    },
+    {
+      "title": "Parking & access",
+      "text": "Free on-site parking, private event entrance and wheelchair access.",
+      "image": "photos/table.jpg"
+    }
+  ],
+  "menu_note": "All food is cooked medium spicy. All food may contain traces of nuts. Please tell us about any allergies.",
+  "menu": [
+    {
+      "category": "Appetizers",
+      "items": [
+        {
+          "name": "Poppadom with Chutney",
+          "price": 3.45,
+          "description": "Mixture of plain and spicy thin, crisp, round flatbread from India",
+          "allergens": [
+            "Gluten",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Spicy Olives",
+          "price": 3.95,
+          "description": "Olives mixed with our chef's special spices and topped with garnish",
+          "allergens": [
+            "Nuts"
+          ]
+        },
+        {
+          "name": "Nachos",
+          "price": 6.95,
+          "description": "Served with cheese, jalapeno and salsa sauce",
+          "allergens": [
+            "Dairy"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Traditional Starters",
+      "items": [
+        {
+          "name": "Papri Chaat",
+          "price": 5.95,
+          "description": "Crispy wafers topped with potatoes, chickpeas, yogurt and tangy chutneys",
+          "allergens": [
+            "Dairy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Pani Puri",
+          "price": 4.95,
+          "description": "Crispy puffs filled with spiced chickpeas, potatoes and tangy water",
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Samosa Chaat",
+          "price": 5.95,
+          "description": "Savoury fried pastries topped with chickpeas, yogurt and tamarind chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Garlic Chilli Mushroom",
+          "price": 6.95,
+          "description": "Rich savour of garlic, tender sweetness from caramelized onions & subtle pungency from vinegar & soy sauce",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Salt & Pepper Paneer & Mushroom",
+          "price": 6.99,
+          "description": "Paneer & mushroom sauté with bell pepper & onion",
+          "allergens": [
+            "Gluten",
+            "Dairy",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Garlic Chilli Mogo",
+          "price": 7.95,
+          "description": "Stir fried cassava chips tossed with garlic, chillies & spices",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Tandoori Paneer",
+          "price": 7.95,
+          "description": "Grilled cottage cheese cubes marinated in spiced yogurt",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Veg Manchurian",
+          "price": 8.45,
+          "description": "Crispy veggie balls tossed in spicy Indo-Chinese semi dry sauce that explodes with hot, sweet, sour & salty flavours",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Chilli Paneer",
+          "price": 8.95,
+          "description": "Popular Indo-Chinese dish where crispy fried paneer cubes are sautéed with peppers, onions and tomato in sweet spicy chilli sauce",
+          "allergens": [
+            "Dairy",
+            "Soya beans",
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Fiery Wings",
+          "price": 7.95,
+          "description": "Specially spiced chicken wings cooked in clay tandoor and served with salad",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chicken Lollipop",
+          "price": 7.95,
+          "description": "Hot & spicy appetizer made with crispy drumettes fried on the bone",
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Chatpate",
+          "price": 6.75,
+          "description": "Veg flavoured instant noodles sauté with fresh green herbs, onions & green chillies",
+          "allergens": [
+            "Mustard",
+            "Celery",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Chilli Chicken",
+          "price": 7.95,
+          "description": "Spicy, tangy chicken breast marinated in special spices mix of soy sauce, chilli sauce sauté with peppers, onions & chillies",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Chicken Tikka",
+          "price": 7.95,
+          "description": "Marinated chicken thigh pieces cooked in tandoor with herbs and spices",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chicken Pakora",
+          "price": 6.95,
+          "description": "Delicious flavourful and crunchy chicken marinated with herbs and spices",
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Chicken Choila",
+          "price": 8.95,
+          "description": "Popular Nepalese delicacy. Chicken marinated in selection of green and dry herbs with spices, served fairly hot",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Salt & Pepper Chicken",
+          "price": 7.95,
+          "description": "Fried chicken pieces sauté with bell pepper & onion",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Nepalese Chicken Sekuwa",
+          "price": 8.95,
+          "description": "Popular Nepalese delicacy. Chicken marinated with high altitude herbs and spices served with puffed rice & chutney",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Mutton on the Bone",
+          "price": 8.95,
+          "description": "Traditional Nepalese home-made mutton slow cooked with super spices",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Lamb Chops (3pcs)",
+          "price": 10.95,
+          "description": "Tandoori pieces of lamb chops marinated with Kashmiri chilli and herbs",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Sheesh Kebab",
+          "price": 7.45,
+          "description": "Minced lamb mixed with fresh herbs",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Fish Pakora",
+          "price": 8.45,
+          "description": "Battered fish served with chutney",
+          "allergens": [
+            "Gluten",
+            "Fish"
+          ]
+        },
+        {
+          "name": "Namaste Garlic Chilli Prawn",
+          "price": 10.99,
+          "description": "Prawn toasted with garlic chillies and spices with sauteed chilli sauce",
+          "allergens": [
+            "Fish",
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Salt & Pepper Prawns",
+          "price": 10.99,
+          "description": "Cooked with Nepalese herbs & spices",
+          "allergens": [
+            "Fish",
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Tandoori Prawns",
+          "price": 10.49,
+          "description": "Marinated in a spiced yogurt and cooked over tandoor until crispy golden",
+          "allergens": [
+            "Dairy",
+            "Fish"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Share With Your Loved Ones",
+      "items": [
+        {
+          "name": "Vegetarian Mixed Platter",
+          "price": 14.95,
+          "description": "Veg Manchurian, Samosa, Tandoori Paneer, Roasted Potato & Mushroom",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Non-Veg Mixed Platter",
+          "price": 16.95,
+          "description": "Chicken Tikka, Sheesh Kebab, Fish Pakora, Chicken Wings",
+          "allergens": [
+            "Dairy",
+            "Fish",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Bishnu's Grand Mixed Platter",
+          "price": 21.99,
+          "description": "Chicken Tikka, Sheesh Kebab, Lamb Chops, Chicken Wings, Fish Pakora",
+          "allergens": [
+            "Dairy",
+            "Fish",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Nepalese Delicacy Platter",
+          "price": 15.99,
+          "description": "Chicken Choila, Chicken Momo, Bhatmas Sadheko, Puffed Rice & tossed fried egg; served with chutney and side salad",
+          "allergens": [
+            "Egg",
+            "Gluten",
+            "Soya beans",
+            "Dairy",
+            "Mustard",
+            "Sesame"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Momo",
+      "items": [
+        {
+          "name": "Chicken Steamed Momo",
+          "price": 10.95,
+          "description": "Traditional Nepalese juicy chicken stuffed dumplings, served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Chicken Fried Momo",
+          "price": 10.95,
+          "description": "Fried chicken Momo; served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Chicken Chilli Momo",
+          "price": 11.5,
+          "description": "Fried chicken dumplings with chef's special Indo-Chinese sauce, mix peppers and onions",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Soya beans",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Chicken Kothey Momo",
+          "price": 11.5,
+          "description": "Half steamed, half fried chicken Momo; served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Chicken Jhol Momo",
+          "price": 11.5,
+          "description": "Steamed chicken Momo served in thick tomato-based soup",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Veg Steamed Momo",
+          "price": 10.95,
+          "description": "Traditional Nepalese veg stuffed dumplings, served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Veg Fried Momo",
+          "price": 10.95,
+          "description": "Fried veg Momo; served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Veg Chilli Momo",
+          "price": 11.5,
+          "description": "Fried veg dumplings with chef's special Indo-Chinese sauce, mix peppers and onions",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Veg Kothey Momo",
+          "price": 11.5,
+          "description": "Half steamed, half fried Veg Momo; served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Veg Jhol Momo",
+          "price": 11.5,
+          "description": "Steamed Vegetarian Momo served in thick tomato-based soup",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Paneer Steamed Momo",
+          "price": 10.95,
+          "description": "Paneer stuffed dumplings, served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Paneer Fried Momo",
+          "price": 11.5,
+          "description": "Fried paneer Momo; served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Paneer Chilli Momo",
+          "price": 11.5,
+          "description": "Fried paneer dumplings with chef's special Indo-Chinese sauce, mix peppers and onions",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Paneer Kothey Momo",
+          "price": 11.5,
+          "description": "Half steamed, half fried paneer Momo; served with chutney",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        },
+        {
+          "name": "Paneer Jhol Momo",
+          "price": 11.5,
+          "description": "Steamed paneer Momo served in thick tomato-based soup",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Sesame"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Chowmein",
+      "items": [
+        {
+          "name": "Veg Chowmein",
+          "price": 10.95,
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Chicken Chowmein",
+          "price": 10.95,
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Prawn Chowmein",
+          "price": 11.95,
+          "allergens": [
+            "Gluten",
+            "Fish"
+          ]
+        },
+        {
+          "name": "Chicken & Prawn Chowmein",
+          "price": 12.95,
+          "allergens": [
+            "Gluten",
+            "Fish"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Vegetarian Dishes",
+      "items": [
+        {
+          "name": "Jackfruit Curry",
+          "price": 8.95,
+          "description": "Served thick sauce cooked with ginger garlic, onion with special herbs and spices"
+        },
+        {
+          "name": "Sweet Potato Kofta",
+          "price": 8.95,
+          "description": "Chef's special kofta featuring sweet potato",
+          "allergens": [
+            "Dairy",
+            "Gluten",
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Mutter Paneer",
+          "price": 9.95,
+          "description": "Paneer and green peas cooked in tomato and onion-based sauce",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Daal Makhani",
+          "price": 9.85,
+          "description": "Black lentils slow cooked with red kidney beans, tomato, garlic and ginger",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Bombay Aloo",
+          "price": 7.95,
+          "description": "Dry potato with chef's special recipe",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Bhindi Masala",
+          "price": 9.85,
+          "description": "Okra cooked with chef's special sauce",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Saag Paneer",
+          "price": 9.95,
+          "description": "Paneer cooked with freshly blended spinach",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Saag Aloo",
+          "price": 8.95,
+          "description": "Freshly blended spinach cooked with potato"
+        },
+        {
+          "name": "Aloo Gobi",
+          "price": 7.95,
+          "description": "Selected cauliflower cooked with potato",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Chana Masala",
+          "price": 8.95,
+          "description": "Chickpeas cooked with blend of herbs and spices"
+        },
+        {
+          "name": "Dry Mix Veg Curry",
+          "price": 8.95,
+          "description": "Traditional mixed vegetables cooked with our herbs and spices"
+        },
+        {
+          "name": "Tarka Daal",
+          "price": 8.95,
+          "description": "Mix lentils cooked with tomato, garlic and ginger"
+        },
+        {
+          "name": "Shahi Paneer",
+          "price": 10.95,
+          "description": "Popular North Indian dish originated from Mughlai cuisine, filled with spices, paneer and cream for a thick, creamy and spicy taste",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Paneer Kadai",
+          "price": 10.95,
+          "description": "Deliciously spiced paneer cooked with onion, capsicum and fresh ground spices",
+          "allergens": [
+            "Dairy"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Chicken Dishes",
+      "items": [
+        {
+          "name": "Namaste Chicken Bhuna",
+          "price": 12.5,
+          "description": "Fairly dry, medium spiced and seasoned with fresh herbs and spices",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chicken Jalfrezi",
+          "price": 12.5,
+          "description": "Flavoured with exotic spices, cooked with pepper and chillies"
+        },
+        {
+          "name": "Chicken Tikka Masala",
+          "price": 12.95,
+          "description": "Tandoor cooked chicken infused with chicken tikka masala sauce",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Methi Chicken",
+          "price": 12.5,
+          "description": "Chicken cooked with fresh fenugreek, tomato and onion sauce",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chef's Special Chicken Tawa",
+          "price": 12.95,
+          "description": "Chicken flavoured with Szechwan peppers and cooked with chef's secret herbs and spices. Caution: can be addictive!",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chicken Chettinad",
+          "price": 12.5,
+          "description": "South Indian flavoured chicken cooked with onions, spices and herbs",
+          "allergens": [
+            "Mustard",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Butter Chicken",
+          "price": 12.95,
+          "description": "Tandoor cooked chicken prepared in a creamy onion and tomato sauce",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chicken Kadai",
+          "price": 12.5,
+          "description": "Deliciously spiced chicken cooked with onions, capsicum and fresh ground spice",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Achari Chicken",
+          "price": 12.5,
+          "description": "Chicken cooked with Nepalese pickling spices",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Chicken Madras",
+          "price": 12.5,
+          "description": "Chicken cooked with garlic, chilli, ginger, curry leaves",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Chicken Korma",
+          "price": 11.95,
+          "description": "Chicken breast cooked with mild cream sauce",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Nepalese Style Chicken Curry",
+          "price": 12.5,
+          "description": "Home style cooked chicken with lots of onion and garlic",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Sharabi Chicken (over 18 only)",
+          "price": 12.99,
+          "description": "Flavourful tender chicken infused with bold splash of whiskey for a smoky, warming twist"
+        }
+      ]
+    },
+    {
+      "category": "Lamb Dishes",
+      "items": [
+        {
+          "name": "Namaste Lamb Bhuna",
+          "price": 12.99,
+          "description": "Fairly hot lamb dish, medium dry and seasoned with fresh herbs"
+        },
+        {
+          "name": "Lamb Jalfrezi",
+          "price": 12.5,
+          "description": "Flavoured with exotic spices, cooked with pepper and chillies"
+        },
+        {
+          "name": "Lamb Rogan Josh",
+          "price": 13.5,
+          "description": "Lamb cooked with medium spicy tomato and onion sauce"
+        },
+        {
+          "name": "Southern Style Lamb",
+          "price": 13.5,
+          "description": "Tender pieces of lamb cooked with curry leaves, mustard, dry whole red chilli and chef's secret herbs and spices",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Keema Mutter Piro",
+          "price": 13.5,
+          "description": "Minced lamb with peas, spicy"
+        },
+        {
+          "name": "Desi Bakhra",
+          "price": 13.5,
+          "description": "Lamb on bone cooked with onion, tomato and dry herbs",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Achari Lamb",
+          "price": 13.5,
+          "description": "Lamb cooked with Nepalese pickling spices",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Lamb Saag",
+          "price": 12.5,
+          "description": "Lamb cooked with spinach, garlic, chilli and ginger"
+        },
+        {
+          "name": "Lamb Madras",
+          "price": 11.95,
+          "description": "Lamb cooked with garlic, chilli, ginger, curry leaves",
+          "allergens": [
+            "Mustard"
+          ]
+        },
+        {
+          "name": "Sharab Lamb (over 18 only)",
+          "price": 13.49,
+          "description": "Flavourful tender lamb infused with bold splash of whiskey for a smoky, warming twist"
+        },
+        {
+          "name": "Sharabi Bakhra (over 18 only)",
+          "price": 13.99,
+          "description": "Flavourful mutton infused with bold splash of whiskey for a smoky, warming twist"
+        },
+        {
+          "name": "Lamb Kadai",
+          "price": 13.5,
+          "description": "Deliciously spiced lamb cooked with onions, ginger, garlic and fresh ground spices",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chef's Special Lamb Tawa",
+          "price": 13.95,
+          "description": "Lamb flavoured with Szechwan peppers and cooked with chef's secret herbs and spices. Caution: can be addictive!",
+          "allergens": [
+            "Dairy"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Seafood",
+      "items": [
+        {
+          "name": "King Prawn Moilee",
+          "price": 12.95,
+          "description": "King prawns cooked in tomato base, coconut milk, curry leaves",
+          "allergens": [
+            "Dairy",
+            "Fish"
+          ]
+        },
+        {
+          "name": "Nepalese Fish Curry",
+          "price": 11.95,
+          "description": "Fish cooked with mustard and medium hot curry sauce",
+          "allergens": [
+            "Dairy",
+            "Fish",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Namaste Prawn Bhuna",
+          "price": 13.49,
+          "description": "Fairly dry, medium spiced and seasoned with fresh herbs and spices",
+          "allergens": [
+            "Fish"
+          ]
+        },
+        {
+          "name": "Prawn Jalfrezi",
+          "price": 13.49,
+          "description": "Flavoured with exotic spices, cooked with pepper and chillies and tomato sauce",
+          "allergens": [
+            "Fish"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Biryani",
+      "items": [
+        {
+          "name": "Veg Biryani",
+          "price": 10.95,
+          "description": "Served with raita",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Chicken Biryani",
+          "price": 10.99,
+          "description": "Served with raita",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Lamb Biryani",
+          "price": 11.95,
+          "description": "Served with raita",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Prawn Biryani",
+          "price": 12.99,
+          "description": "Served with raita",
+          "allergens": [
+            "Dairy",
+            "Fish"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Sides, Rice & Chips",
+      "items": [
+        {
+          "name": "Cucumber Raita",
+          "price": 3.45,
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Fresh Seasonal Salad",
+          "price": 4.45
+        },
+        {
+          "name": "Plain Yogurt",
+          "price": 1.99,
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Steamed Rice",
+          "price": 3.95
+        },
+        {
+          "name": "Pilau Rice",
+          "price": 3.95,
+          "description": "Basmati rice cooked with dried spice and saffron",
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Namaste Rice",
+          "price": 4.95,
+          "description": "Vegetable fried rice"
+        },
+        {
+          "name": "Mushroom Fried Rice",
+          "price": 4.95,
+          "allergens": [
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Egg Fried Rice",
+          "price": 4.95,
+          "allergens": [
+            "Egg",
+            "Soya beans"
+          ]
+        },
+        {
+          "name": "Plain Chips",
+          "price": 3.95
+        },
+        {
+          "name": "Nepalese Masala Chips",
+          "price": 3.95,
+          "description": "Crispy chips tossed with tangy and spicy spices"
+        },
+        {
+          "name": "Chilli Chips",
+          "price": 4.5,
+          "description": "Chips with chilli sauce sautéed with peppers and onions"
+        }
+      ]
+    },
+    {
+      "category": "Naans",
+      "items": [
+        {
+          "name": "Naan Bread",
+          "price": 2.95,
+          "allergens": [
+            "Gluten",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Garlic Naan",
+          "price": 2.99,
+          "allergens": [
+            "Gluten",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Garlic Chilli Naan",
+          "price": 3.45,
+          "allergens": [
+            "Gluten",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Peshwari Naan",
+          "price": 3.95,
+          "allergens": [
+            "Nuts",
+            "Gluten",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Cheese Naan",
+          "price": 3.95,
+          "allergens": [
+            "Gluten",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Keema Naan",
+          "price": 3.95,
+          "allergens": [
+            "Gluten",
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Tandoori Roti",
+          "price": 2.95,
+          "allergens": [
+            "Gluten",
+            "Dairy"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Kids Menu",
+      "items": [
+        {
+          "name": "Chicken Nuggets & Chips",
+          "price": 4.95,
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Chicken & Rice",
+          "price": 4.95,
+          "allergens": [
+            "Dairy"
+          ]
+        },
+        {
+          "name": "Fish & Chips",
+          "price": 4.95,
+          "allergens": [
+            "Fish",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Plain Noodles",
+          "price": 3.95,
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Plain Noodles with Vegetables",
+          "price": 4.95,
+          "allergens": [
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Plain Noodles with Chicken Pieces",
+          "price": 5.45,
+          "allergens": [
+            "Gluten"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Desserts",
+      "items": [
+        {
+          "name": "Classic Kulfi",
+          "price": 4.95,
+          "description": "Classic flavoured kulfi",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Pistachio Kulfi",
+          "price": 4.95,
+          "description": "Pistachio flavoured kulfi",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Ice Cream",
+          "price": 3.95,
+          "description": "Vanilla, chocolate or strawberry",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Gulab Jamun",
+          "price": 4.95,
+          "description": "Fried balls of dough made from milk solids and semolina, soaked with an aromatic sweet syrup, served with vanilla ice cream",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Coconut Supreme",
+          "price": 5.95,
+          "description": "Delicious coconut ice cream served in real coconut shell",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Malteser Cheesecake",
+          "price": 5.95,
+          "description": "Malt cheesecake with a chocolate chip cookie base, garnished with dusted cocoa and a malted milk ball",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Salted Caramel Pot",
+          "price": 5.95,
+          "description": "Rich caramel ice cream rippled with salted caramel and shortbread",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Strawberry Cheesecake",
+          "price": 5.95,
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Cookies and Cream Bash",
+          "price": 6.95,
+          "description": "An Oreo cookie universe of white and milk chocolate cream, studded with Oreo chunks and showered with dark chocolate drizzle",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        },
+        {
+          "name": "Punky (for children)",
+          "price": 3.95,
+          "description": "Vanilla ice cream served in a penguin shaped toy",
+          "allergens": [
+            "Dairy",
+            "Nuts",
+            "Milk"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Vegan Menu",
+      "items": [
+        {
+          "name": "Vegan Poppadom with Chutney",
+          "price": 3.45,
+          "description": "Mixture of plain and spicy thin, crisp, round flatbread from India",
+          "allergens": [
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Spicy Olives",
+          "price": 3.95,
+          "description": "Olives mixed with our chef's special spices and topped with garnish",
+          "allergens": [
+            "Nuts"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Pani Puri",
+          "price": 4.95,
+          "description": "Crispy puffs filled with spiced chickpeas; most common street food in Nepal & India",
+          "allergens": [
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Garlic Chilli Mushroom",
+          "price": 6.95,
+          "description": "Rich savour of garlic, tender sweetness from caramelized onions & subtle pungency from vinegar & soy sauce",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Garlic Chilli Mogo",
+          "price": 7.95,
+          "description": "Stir fried cassava chips tossed with garlic, chillies & spices",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Chicken Tikka",
+          "price": 8.25,
+          "description": "Soya chunks marinated with herbs and spices and slowly cooked in tandoori oven",
+          "allergens": [
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Chilli Chicken",
+          "price": 8.99,
+          "description": "Succulent pieces of soya tossed with chef's special Indo-Chinese sauces, mix peppers and onions",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Choila",
+          "price": 9.99,
+          "description": "Chunks of soya flavoured and marinated with Nepalese herbs and finished with a hint of lemon and chilli",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Lamb Tikka",
+          "price": 9.95,
+          "description": "Lamb flavoured soya chunks marinated with herbs and spices and slowly cooked in tandoori oven",
+          "allergens": [
+            "Gluten",
+            "Soya beans"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Jackfruit Curry",
+          "price": 8.95,
+          "description": "Served thick sauce cooked with ginger garlic, onion with special herbs and spices",
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Bombay Aloo",
+          "price": 7.95,
+          "description": "Dry potato with chef's special recipe",
+          "allergens": [
+            "Mustard"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Aloo Gobi",
+          "price": 7.95,
+          "description": "Selected cauliflower cooked with potato",
+          "allergens": [
+            "Mustard"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Chana Masala",
+          "price": 8.95,
+          "description": "Chickpeas cooked with blend of herbs and spices",
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Dry Mix Veg Curry",
+          "price": 8.95,
+          "description": "Traditional mixed vegetables cooked with our herbs and spices",
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Tarka Daal",
+          "price": 8.95,
+          "description": "Mix lentils cooked with tomato, garlic and ginger",
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Chicken Bhuna",
+          "price": 13.5,
+          "description": "Chicken flavoured soya chunks cooked in a bhuna style curry",
+          "allergens": [
+            "Soya beans",
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Chicken Balti",
+          "price": 13.5,
+          "description": "No need for a description and you can't go wrong with this one",
+          "allergens": [
+            "Soya beans",
+            "Gluten",
+            "Mustard",
+            "Nuts"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Chicken Jalfrezi",
+          "price": 13.5,
+          "description": "Chicken flavoured soya chunks cooked with fresh peppers and green chillies",
+          "allergens": [
+            "Soya beans",
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Methi Chicken",
+          "price": 13.95,
+          "description": "Soya pieces slowly cooked with methi saag in curry style and flavoured with Nepalese herbs and spices",
+          "allergens": [
+            "Soya beans",
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Lamb Jalfrezi",
+          "price": 13.5,
+          "description": "Lamb flavoured soya chunks cooked with fresh peppers and green chillies",
+          "allergens": [
+            "Soya beans",
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Lamb Bhuna",
+          "price": 13.5,
+          "description": "Lamb flavoured soya chunks cooked with our chef's special bhuna sauce",
+          "allergens": [
+            "Soya beans",
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Lamb Balti",
+          "price": 13.5,
+          "description": "Lamb flavoured soya chunks cooked with our special spices and greens in balti flavour",
+          "allergens": [
+            "Soya beans",
+            "Gluten",
+            "Mustard",
+            "Nuts"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Lamb Saag",
+          "price": 13.5,
+          "description": "Lamb flavoured soya chunks cooked with spinach/saag, nice and medium flavoured",
+          "allergens": [
+            "Soya beans",
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Chicken Tawa Special",
+          "price": 13.95,
+          "description": "Chicken flavoured soya chunks cooked with Nepalese spices and herbs and served in a cooking tawa",
+          "allergens": [
+            "Soya beans",
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Fresh Seasonal Salad",
+          "price": 4.45,
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Steamed Rice",
+          "price": 3.95,
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Namaste Rice",
+          "price": 4.95,
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Mushroom Fried Rice",
+          "price": 4.95,
+          "allergens": [
+            "Soya beans"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Naan Bread",
+          "price": 2.95,
+          "allergens": [
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Garlic Naan",
+          "price": 2.99,
+          "allergens": [
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Garlic Chilli Naan",
+          "price": 3.45,
+          "allergens": [
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Tandoori Roti",
+          "price": 2.95,
+          "allergens": [
+            "Gluten"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Plain Chips",
+          "price": 3.95,
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Nepalese Masala Chips",
+          "price": 3.95,
+          "description": "Crispy chips tossed with tangy and spicy spices",
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Chilli Chips",
+          "price": 4.5,
+          "description": "Chips with chilli sauce sautéed with peppers and onions",
+          "allergens": [
+            "Soya beans"
+          ],
+          "tags": [
+            "VG"
+          ]
+        },
+        {
+          "name": "Vegan Vanilla Ice Cream",
+          "price": 4.95,
+          "description": "Creamy vanilla ice cream made vegan; a perfect way to cool down heat and end your meal",
+          "tags": [
+            "VG"
+          ]
+        }
+      ]
+    }
+  ],
+  "gallery": [
+    "photos/hero.jpg",
+    "photos/momo.jpeg",
+    "photos/biryani.jpg",
+    "photos/bar.jpg",
+    "photos/spread.jpg",
+    "photos/tandoori.jpg",
+    "photos/dessert.jpg",
+    "photos/interior.jpg"
+  ],
+  "reviews_summary": {
+    "rating": 4.6,
+    "count": 640,
+    "source": "Google"
+  },
+  "reviews": [
+    {
+      "text": "Lovely food as always, great veggie/vegan options!",
+      "author": "Joolz H"
+    },
+    {
+      "text": "The staff was polite and the food was very very nice.",
+      "author": "Navi"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How spicy is the food?",
+      "a": "All our food is cooked medium spicy. Let us know if you would like it mild or extra spicy."
+    },
+    {
+      "q": "Do you have a vegan menu?",
+      "a": "Yes, a separate vegan menu with starters, mains, sides and dessert."
+    },
+    {
+      "q": "How do I get 15% off?",
+      "a": "Spend over £20 on a collection order, by phone or online."
+    },
+    {
+      "q": "Can I hire a private space?",
+      "a": "Yes. Private dining for up to 35 guests and a party hall for 40-45. Call 01902 939380."
+    }
+  ],
+  "seo": {
+    "description": "Namaste Wolverhampton - Nepalese & Indian restaurant on Dudley Road. Momo, curries, biryani, vegan menu, cocktail bar and free party hall. Book a table or order online."
+  },
+  "festive": {
+    "enabled": true,
+    "theme": "christmas",
+    "label": "",
+    "title": "Christmas Day at Namaste",
+    "text": "Celebrate Christmas Day with a festive set menu: a welcome drink, appetizer, starter platter, main course, two sides and dessert.",
+    "dates": "Christmas Day, 3pm to 10pm",
+    "start": "",
+    "end": "2026-12-25",
+    "image": "photos/spread.jpg",
+    "button_text": "",
+    "button_url": "",
+    "banner": true,
+    "items": [
+      {
+        "title": "Veg set menu",
+        "price": "£30 per person",
+        "text": "Paneer Tikka, Chilli Mushroom, Manchurian and Samosa to start"
+      },
+      {
+        "title": "Vegan set menu",
+        "price": "£35 per person",
+        "text": "Vegan Lamb Tikka, Chilli Mogo and Vegan Chilli Chicken to start"
+      },
+      {
+        "title": "Non veg set menu",
+        "price": "£45 per person",
+        "text": "Lamb Chops, Sheesh Kebab and Chicken Tikka to start"
+      },
+      {
+        "title": "Sea food set menu",
+        "price": "£55 per person",
+        "text": "Tandoori King Prawn, Fish Pakora and Chilli Prawn to start"
+      }
+    ]
+  },
+  "location": {
+    "country": "United Kingdom",
+    "region": "West Midlands"
+  }
+}

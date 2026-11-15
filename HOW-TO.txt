@@ -1,0 +1,383 @@
+NAVIRA HUB - websites + AI chat + bookings for all your restaurants, in one place
+==================================================================================
+
+WHAT IT IS
+  One app with a dashboard (/admin). For every restaurant you can:
+    - build and edit its website (type in forms, or just tell the AI what to change)
+    - upload a menu photo or PDF and let the AI build the menu
+    - upload photos, see a live preview, then press Publish
+    - undo any change (Go live -> History)
+    - turn the AI assistant on or off for Website chat, Facebook and Instagram
+    - take table bookings in the chat through the Navira booking API
+  The website and the chat use the same information, so you change things once.
+
+
+=====================================================================
+PART 1 - RUN IT ON YOUR LAPTOP (Windows)
+=====================================================================
+  1. Unzip navira-hub.zip. Open the navira-hub folder.
+     (You should see app.py straight away, not another folder inside.)
+  2. Click the folder's address bar, type  cmd  and press Enter.
+  3. Type these, pressing Enter after each one:
+
+        pip install -r requirements.txt
+        set ANTHROPIC_API_KEY=your-key
+        set ADMIN_PASSWORD=choose-a-password
+        python app.py
+
+  4. Open your browser at:   http://127.0.0.1:5000/admin
+     Log in with the password you chose.
+  5. You will see Namaste Wolverhampton as an example. Click Edit.
+
+  Keep the black window open while you use it. Close it to stop.
+
+
+=====================================================================
+PART 2 - HOW TO USE IT (2 minutes)
+=====================================================================
+  ADD A RESTAURANT
+    Dashboard -> "+ Add restaurant" -> type the name -> Create.
+    (Delete one: open it -> Go live -> Delete restaurant. It is moved to a
+    "trash" folder on the server, not destroyed.)
+
+  BUILD A WEBSITE JUST BY CHATTING  ("Build with AI" tab)
+    The AI asks you questions and builds the website as you answer.
+    1. Give it a head start, any of these:
+         - paste the link to the restaurant's old website or Facebook page
+         - click "Add photos or files" and attach the menu (photo or PDF),
+           the logo and food photos (up to 12 files at once)
+         - or just type: "Nepalese restaurant, 480 Dudley Road, 01902 939380,
+           open 3pm to 10pm every day"
+    2. It fills in what it can, shows a green list of what it did, and asks
+       for the next missing thing (hours, links, booking, offers...).
+       Answer, or type "skip".
+    3. Watch the preview on the right change as you go.
+    4. When you are happy, press "Publish website". It is live at /s/<short-name>/
+
+  CHANGE SOMETHING LATER
+    Open the restaurant and type it in the same chat, for example:
+        Change Sunday hours to 12pm-9pm
+        Chicken momo is now 11.50
+        Remove the Christmas offer and add: 2 for 1 cocktails on Fridays
+        Use the new photo as the main photo        (attach the photo)
+    Check the preview, then press Publish.
+    Nothing reaches customers until you press Publish.
+    Wrong? Go live -> History -> "Go back to before this".
+    Prefer typing in boxes? The other tabs (Basics, Menu, Photos...) edit the
+    same website by hand.
+
+  FESTIVE SECTION  ("Festive" tab, or ask the AI)
+    A special coloured section near the top of the website for any festival or
+    seasonal offer: Christmas menu, New Year's Eve, Valentine's, Mother's Day,
+    Easter, Eid, Dashain, Tihar/Diwali, Halloween, or "Other" for anything else.
+      - Pick the festival (it sets the colours), type a title, text and when.
+      - Add set menus or deals with prices (optional) and a photo (optional).
+      - Optional start / stop dates: it appears and disappears by itself.
+      - Switch "Show the festive section" on, Save, check the preview, Publish.
+    Or just tell the AI:
+        Add a Dashain section: family feast 25 pounds per person, 10 to 24 October
+        Take the Christmas section down
+    While it is showing, the chat assistant also knows about it.
+    One festive section at a time: change it when the season changes.
+
+  DESIGN IT YOUR WAY  ("Design" tab, or just tell the AI)
+    10 TEMPLATES: Elegant, Modern, Warm, Dark & bold, Minimal, Street food,
+    Luxe, Fresh, Classic pub, Bistro. Click one in the Design tab. Your words,
+    menu and photos stay; fonts, background and layouts change.
+    "Use this template's colours" also takes its colours.
+
+    A LAYOUT FOR EACH SECTION: top of the page, menu bar, offers, about,
+    feature boxes, food menu, gallery, reviews, questions, hours & map. Each
+    has its own choices (e.g. gallery: even grid / mixed sizes / sideways strip).
+
+    MOVEMENT: none, gentle, or lively. Sections fade in as people scroll;
+    lively adds a slow zoom on the top photo and lifting cards.
+
+    OWN PAGES: in "Sections", tick "Own page" next to Menu, Gallery or any
+    other section. It moves to its own page (/menu/, /gallery/) and the menu
+    bar links to it. Untick to put it back on the home page.
+
+    ALSO: colours, 22 fonts, button shape, corner roundness, section order,
+    show/hide, your own headings, your own extra sections, custom CSS.
+
+    OR TELL THE AI in "Build with AI", in your own words:
+        Use the Luxe template with our gold colour
+        Put the menu and gallery on their own pages
+        Show the gallery as a sideways strip and the reviews as big quotes
+        Make it move more / turn the animations off
+        Put the menu first, and hide the reviews
+        Add a section about our rooms with this photo        (attach the photo)
+    Check Desktop AND Mobile in the preview, then Publish.
+
+    ON PHONES every website has a menu button (three lines) at the top right,
+    plus Call / Order / Book buttons at the bottom.
+
+  THE ADMIN MENU  (the three-line button, top left of a restaurant)
+    Every settings screen is in this one list: Name & texts, Opening hours,
+    Links, Offers, Festive, Feature boxes, Food menu, Photos & gallery,
+    Reviews, Questions, Your own sections, Template & layouts, Section order
+    & pages, Table booking, Chat assistant, Facebook & Instagram, AI
+    knowledge, Messages & bookings, Website address, Privacy, History, Delete.
+    On a phone or small screen, tap the button to open the list.
+
+  OFFERS WITH A PHOTO, BUTTON AND LINK  (menu -> Offers)
+    Each offer can have a photo, a button text and a link. Choose where the
+    photo goes: above the text, under the text, or behind the text. The same
+    choice is on feature boxes, cards in your own sections, and the festive
+    section. A button with no link opens the table booking form.
+    The chip at the top of the page shows each offer in turn, every 5 seconds.
+
+  TABLE BOOKING ON THE WEBSITE (runs on Navira)
+    Chat & channels tab -> "Navira booking slug" (use  naviratest  to test).
+    Every "Book a table" button then opens the website's own booking form:
+    1 date (month calendar) -> 2 how many people -> 3 free times -> your
+    details -> check -> booked. The last screen shows the reference and ALL
+    the booking details, with "Add to calendar" and "Print".
+    The booking goes straight into your Navira system and Navira sends the
+    confirmation email. There is also a page to share:  /s/<short-name>/book/
+    No slug? The buttons open the "Table booking link" instead.
+    FOUR LOOKS for the form (menu -> Table booking -> Booking form style):
+    step by step in the middle, a panel sliding in from the right, full
+    screen with a summary at the side, or a quick form on one screen.
+    BIGGEST GROUP: set "Biggest group that can book online". When a customer
+    picks that number, the form says: for a bigger group, please contact the
+    restaurant directly, with the phone number.
+    TEST IT: make one booking with your own email, check it is in Navira,
+    then cancel it there.
+
+  MESSAGES & CHANNELS  (dashboard -> "Messages")
+    One place for the website chat, Facebook and Instagram, for all restaurants.
+      Conversations: read what customers and the AI said. "Take over from AI"
+          pauses the AI for that customer; type a reply and Send; "Hand back
+          to AI" when you are done. Replies go to Facebook/Instagram straight
+          away, and into the website chat window if the visitor still has it open.
+      Bookings: a list of bookings made by the website form and by the AI.
+          (Changes and cancellations are done in Navira.)
+      Channels: AI on/off for every restaurant and channel, and what still
+          needs setting up.
+    Conversations are kept for 30 days, then deleted automatically.
+
+  PRIVACY NOTICE  (Go live tab)
+    The booking form and chat collect names, emails and phone numbers, so each
+    website should have a privacy page. Click "Write a starting text for me",
+    check it, Save, Publish. It appears as "Privacy" at the bottom of the site.
+    Meta asks for this page too before it approves Facebook/Instagram messaging.
+
+  WHAT THE CHAT ASSISTANT ANSWERS FROM  ("AI knowledge" tab)
+    The customer chat (website, Facebook, Instagram) knows:
+       - everything on the PUBLISHED website (menu, hours, offers...)
+       - plus everything you add in "AI knowledge":
+            upload files or photos (allergen sheet, party packages, drinks list,
+            a photo of the specials board), add a web page link, or type a note.
+    These are used straight away, no Publish needed. Delete one and the
+    assistant stops using it.
+
+  ALWAYS CHECK what the AI read from a menu photo (prices!) before you publish.
+
+  BOOKINGS IN THE CHAT
+    Chat & channels tab -> "Navira booking slug" -> the restaurant's Navira slug
+    (use  naviratest  for testing). Save.
+
+  AI ON / OFF
+    Dashboard switches, or Chat & channels tab. Works straight away.
+
+
+=====================================================================
+PART 3 - MAKE IT LIVE ON THE INTERNET (Render)
+=====================================================================
+  A. PUT THE CODE ON GITHUB
+     1. github.com -> + -> New repository -> name: navira-hub -> Private -> Create.
+        (Do NOT add a README.)
+     2. In the black window, inside the navira-hub folder:
+
+          git init
+          git add .
+          git commit -m "navira hub"
+          git branch -M main
+          git remote add origin https://github.com/YOUR-USERNAME/navira-hub.git
+          git push -u origin main
+
+  B. CREATE THE SERVER
+     1. render.com -> New + -> Web Service -> pick navira-hub.
+     2. Fill in:
+          Language:        Python 3
+          Build Command:   pip install -r requirements.txt
+          Start Command:   gunicorn app:app --workers 1 --threads 8 --timeout 180
+     3. Environment Variables -> add:
+          ANTHROPIC_API_KEY = your key
+          ADMIN_PASSWORD    = a strong password
+          SECRET_KEY        = any long random text (keeps you logged in)
+     4. Deploy. When it says "Live", open:
+          https://YOUR-RENDER-ADDRESS/admin
+
+  C. KEEP YOUR WORK SAFE  (VERY IMPORTANT)
+     On Render's FREE plan the server's files are wiped every time it restarts
+     or you push new code. That would delete the websites and photos you made
+     in the dashboard. Before you use it for real restaurants:
+       1. Change the service to a paid instance type (see Render's pricing page).
+       2. In the service -> Disks -> Add Disk:
+             Mount Path:  /var/data        Size: 1 GB is plenty to start
+       3. Environment Variables -> add:   DATA_DIR = /var/data
+       4. Deploy again.
+     Now everything you do in the dashboard is kept.
+     (A paid instance also does not "sleep", so the chat answers at once.)
+
+  D. EACH RESTAURANT'S WEBSITE ADDRESS
+     Straight away:   https://YOUR-RENDER-ADDRESS/s/namaste/
+     Their own domain (e.g. www.namastewolverhampton.co.uk):
+       1. Render -> the service -> Settings -> Custom Domains -> Add the domain.
+       2. Where the domain was bought (GoDaddy, Namecheap...), add the DNS
+          record Render shows you. Wait until Render says "Verified".
+       3. Dashboard -> the restaurant -> Go live -> type the domain -> Save.
+     The domain now shows that restaurant's website, with https.
+
+  E. UPDATING THE APP LATER (new code from me)
+       git add .
+       git commit -m "update"
+       git push
+     Render redeploys by itself. Your restaurants stay (they live on the Disk).
+
+
+=====================================================================
+PART 4 - FACEBOOK & INSTAGRAM (optional)
+=====================================================================
+  The same AI answers messages sent to the restaurant's Facebook Page and
+  Instagram account, and books tables.
+
+  YOU NEED
+    - Admin access to the restaurant's Facebook Page.
+    - For Instagram: a Business/Professional account linked to that Page, with
+      "Allow access to messages" turned on in the Instagram app.
+    - A free account at developers.facebook.com
+
+  ONE TIME (Meta's screens change often; names may differ a little)
+    1. developers.facebook.com -> My Apps -> Create App (type: Business).
+    2. Add the "Messenger" product (and Instagram messaging inside it).
+    3. App settings -> Basic -> copy the "App secret".
+    4. Render -> Environment Variables:
+          META_APP_SECRET   = the App secret
+          META_VERIFY_TOKEN = any password you make up
+    5. Meta app -> Messenger settings -> Webhooks:
+          Callback URL:  https://YOUR-RENDER-ADDRESS/webhooks/meta
+          Verify token:  the same META_VERIFY_TOKEN
+       Tick the "messages" field for the Page and for Instagram.
+
+  FOR EACH RESTAURANT
+    1. In the Meta app: connect the restaurant's Page -> Generate token.
+    2. Render -> Environment Variables: add the token with the name shown in the
+       dashboard (Chat & channels tab), e.g.  PAGE_TOKEN_NAMASTE
+    3. Dashboard -> restaurant -> Chat & channels: type the Facebook Page ID and
+       Instagram account ID -> Save.
+       Don't know the ID? Send the Page a message, then look at Render -> Logs
+       for a line starting with [META]; it tells you the ID.
+    4. Message the Page from your own account: "table for 2 tomorrow?"
+
+  BEFORE REAL CUSTOMERS CAN USE IT
+    Until Meta approves your app, the AI only answers people who have a role on
+    the Meta app (you and testers). For the public you need Business
+    Verification and App Review ("Advanced access") for pages_messaging and
+    instagram_manage_messages, plus a privacy policy page. Allow days to weeks.
+
+  Never put tokens or secrets in the code or on GitHub. Only in Render's
+  Environment Variables.
+
+
+=====================================================================
+IF SOMETHING GOES WRONG
+=====================================================================
+  Render -> Logs shows what happened:
+    [API]      calls to the Navira booking system
+    [BOOKED]   a booking was made
+    [AI EDIT]  the AI changed a website
+    [META]     Facebook / Instagram
+    [ERROR]    something failed (send me this line)
+
+  "The AI is not connected"  -> ANTHROPIC_API_KEY is missing or wrong.
+  Can't log in               -> ADMIN_PASSWORD is not set, or you typed it wrong.
+  My restaurants disappeared -> see Part 3 C (add the Disk and DATA_DIR).
+  Booking form says it can't check tables -> look for [API] lines in the logs;
+                                the Navira slug may be wrong or booking is off in Navira.
+
+FESTIVALS (colours for the festive section)
+  Admin > Festivals (button at the top of the Restaurants page).
+  One list for all restaurants. Change a festival's colours, add your own festival
+  (name + 4 colours), or remove one. Then open a restaurant > Festive section and
+  choose it under "Festival (sets the colours)".
+  The list is saved in the data folder as festivals.json.
+
+BACKUPS  (Admin > Backups & tools)
+  A backup of the whole data folder is made once a day and kept in <DATA_DIR>/backups
+  (the newest 7; change with BACKUP_KEEP in the env file, switch off with AUTO_BACKUP=0).
+  "Back up now" makes one straight away. "Download" saves it to your computer.
+  Download one every week or so: a backup on the same server is lost if the server is lost.
+  To put a backup back: systemctl stop navira-hub, unzip it into the data folder,
+  systemctl start navira-hub.
+
+NUMBERS
+  Each restaurant card shows visitors, chat messages and bookings for the last 30 days.
+  Day by day: open a restaurant > menu > "Copy, export & numbers". All restaurants together:
+  Admin > Backups & tools. No cookies are used and nothing personal is stored.
+
+COPY / EXPORT / IMPORT A RESTAURANT
+  Copy:   "Copy" on a restaurant card. New restaurant with the same design, menu, photos.
+  Export: open a restaurant > "Copy, export & numbers" > Export as zip.
+  Import: Admin > Backups & tools > "Move a restaurant between computers".
+  Use export + import to move a restaurant from your laptop to the server.
+  A copy or import is not live until you publish it, and its Navira slug, domain and
+  channel IDs are empty so it can never take bookings for the wrong restaurant.
+
+AI MONTHLY LIMIT
+  Open a restaurant > "AI monthly limit": the most AI replies in one month. When reached,
+  the assistant tells customers to call instead, and starts again on the 1st.
+  AI_MONTHLY_LIMIT in the env file sets one limit for every restaurant that has 0.
+
+COOKIE NOTICE
+  Open a restaurant > "Privacy & cookie notice". On by default, shown once per visitor.
+  The website itself uses no tracking cookies. If you add Google Analytics, a Facebook
+  pixel or similar with custom code, you need a proper consent tool instead.
+
+WHATSAPP
+  Uses the WhatsApp Business Cloud API from the same Meta app as Facebook and Instagram.
+  1. In the Meta app add the "WhatsApp" product and add the restaurant's phone number.
+     (A number used here cannot be used in the normal WhatsApp app at the same time.)
+  2. Webhook: the same address as Facebook (/webhooks/meta) and the same verify token.
+     Subscribe to the "messages" field.
+  3. Make a permanent token (Business settings > System users) with whatsapp_business_messaging.
+     Put it in the env file as WHATSAPP_TOKEN_<ID> (for example WHATSAPP_TOKEN_NAMASTE),
+     or as one WHATSAPP_TOKEN if all numbers are in the same WhatsApp Business account.
+  4. Open the restaurant > WhatsApp > paste the Phone number ID > Save.
+  5. Chat assistant > switch WhatsApp on.
+  Replies inside 24 hours of the customer's message are normal replies. Meta charges for
+  some WhatsApp messages; check Meta's current prices before switching it on.
+
+SECTION TEMPLATES (10 for each section)
+  Open a restaurant > menu > "Section templates (10 each)". Offers, Festive, Feature boxes,
+  Food menu, Reviews, Gallery, Hours/map/contact and Questions each have 10 looks.
+  Reviews "One review at a time" and "Row of cards" slide by themselves.
+  Gallery: tap a photo to open it big, then swipe or use the arrows for the next one.
+
+MENU PHOTOS AND SECTION BUTTONS
+  Food menu: each dish and each menu section can have a photo (upload in Photos first).
+  "Section buttons": a row you slide sideways, or a ☰ button that opens the list.
+
+ONLINE ORDERING AND SOCIAL LINKS
+  "Online ordering & delivery apps": your own ordering link is always the main button.
+  Just Eat, Uber Eats, Deliveroo and Foodhub are shown smaller as "Also on".
+  "Social media links": Facebook, Instagram, TikTok, YouTube, X, WhatsApp, Tripadvisor,
+  Snapchat, Threads, LinkedIn.
+
+MENU BAR, PHONE BAR, FOOTER CREDIT
+  "Menu bar & phone bar": choose which sections are named in the top bar, which buttons it
+  has, and up to 4 buttons for the bar at the bottom on phones (or no bar).
+  "Footer & Navira credit": choose the Navira Technology line, write your own, or hide it.
+
+SWITCH A WEBSITE OFF, OR DELETE A RESTAURANT
+  Open a restaurant > menu > "Switch off or delete".
+  Switch off: the website link shows "This website is not available right now". Nothing is
+  deleted, and you can switch it on again any time.
+  Delete: type the word delete in the box, then the Delete button works.
+
+COUNTRY AND REGION
+  "+ Add restaurant" asks which country and region the restaurant is in.
+  The dashboard can be filtered by country, region, and live / not live.
+  Change them later: open the restaurant > "Name & texts" > "Country and region".

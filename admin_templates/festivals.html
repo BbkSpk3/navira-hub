@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Festivals · Navira Hub</title><link rel="stylesheet" href="/static/admin.css">
+<style>
+.fest-list{display:grid;gap:14px;margin-top:18px}
+.fest-row{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:16px;align-items:center}
+.fest-top{display:flex;gap:8px;align-items:flex-end}
+.fest-top label{flex:1;min-width:0}
+.fest-row label{display:block;font-size:12.5px;font-weight:600;color:var(--muted)}
+.fest-row input[type=text]{width:100%;height:38px;margin-top:4px;padding:0 10px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.fest-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+.fest-cols input[type=color]{display:block;width:100%;height:38px;margin-top:4px;padding:2px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
+.fest-used{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.fest-demo{border-radius:12px;padding:18px 16px;text-align:center;min-height:132px;display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden}
+.fest-demo small{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700}
+.fest-demo strong{font:600 21px Georgia,serif;overflow-wrap:anywhere}
+.fest-demo span{align-self:center;margin-top:6px;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:700}
+.fest-actions{position:sticky;bottom:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:20px;padding:12px 0;background:var(--bg)}
+@media (max-width:760px){.fest-row{grid-template-columns:1fr}.fest-cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style></head>
+<body>
+<header class="top">
+  <a class="home" href="/admin" title="All restaurants">← <span class="hide-sm">Restaurants</span></a>
+  <strong class="r-name">Festivals</strong>
+  <span class="grow"></span>
+  <a class="btn quiet" href="/admin/logout">Log out</a>
+</header>
+<main class="page">
+  <div class="page-head">
+    <div><h1>Festivals</h1>
+      <p class="muted">One list for all restaurants. Each festival has its own colours for the festive section. Change the colours, or add your own festival, then pick it in a restaurant under Festive section.</p></div>
+    <button class="btn primary" type="button" id="add">+ Add festival</button>
+  </div>
+  <p class="alert" id="err" hidden></p>
+  <div class="fest-list" id="list"></div>
+  <div class="fest-actions">
+    <button class="btn primary" type="button" id="save">Save festivals</button>
+    <button class="btn" type="button" id="reset">Put back the starting list</button>
+    <span class="muted" id="note"></span>
+  </div>
+</main>
+<div id="toast" class="toast" role="status"></div>
+<script>
+const CSRF = {{ csrf|tojson }};
+const COLS = [["bg", "Background"], ["bg2", "Background (darker)"], ["accent", "Highlight and button"], ["ink", "Text"]];
+const list = document.getElementById("list"), err = document.getElementById("err"), note = document.getElementById("note");
+let rows = [], inUse = {}, dirty = false;
+
+function el(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null || v === false) continue;
+    if (k === "text") e.textContent = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else if (k === "value") e.value = v; else e.setAttribute(k, v);
+  }
+  for (const kid of kids.flat()) if (kid) e.append(kid);
+  return e;
+}
+function changed() { dirty = true; note.textContent = "Not saved yet."; }
+function paint(demo, r) {
+  demo.style.background = `linear-gradient(160deg, ${r.bg}, ${r.bg2})`;
+  demo.style.color = r.ink;
+  demo.children[0].style.color = r.accent;
+  demo.children[0].textContent = r.name || "Festival";
+  demo.children[2].style.background = r.accent;
+  demo.children[2].style.color = r.bg2;
+}
+function draw() {
+  list.replaceChildren(...rows.map((r, i) => {
+    const demo = el("div", { class: "fest-demo", "aria-hidden": "true" }, el("small"), el("strong", { text: "Your offer title" }), el("span", { text: "Book your table" }));
+    const used = (r.key && inUse[r.key]) || [];
+    const row = el("div", { class: "fest-row" },
+      el("div", {},
+        el("div", { class: "fest-top" },
+          el("label", {}, "Festival name", el("input", { type: "text", maxlength: "40", value: r.name, placeholder: "e.g. Bonfire Night", oninput: (e) => { r.name = e.target.value; paint(demo, r); changed(); } })),
+          el("button", { class: "btn danger", type: "button", text: "Remove", onclick: () => {
+            if (used.length && !confirm(`${used.join(", ")} use${used.length === 1 ? "s" : ""} this festival. If you remove it, ${used.length === 1 ? "it" : "they"} will switch to the restaurant's own colours. Remove?`)) return;
+            rows.splice(i, 1); changed(); draw();
+          } })),
+        el("div", { class: "fest-cols" }, COLS.map(([k, label]) =>
+          el("label", {}, label, el("input", { type: "color", value: r[k], oninput: (e) => { r[k] = e.target.value; paint(demo, r); changed(); } })))),
+        used.length ? el("p", { class: "fest-used", text: "Used by: " + used.join(", ") }) : null),
+      demo);
+    paint(demo, r);
+    return row;
+  }));
+}
+function toast(text) { const t = document.getElementById("toast"); t.textContent = text; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2600); }
+function take(d) { rows = d.festivals; inUse = d.in_use || {}; dirty = false; note.textContent = ""; err.hidden = true; draw(); }
+async function send(body) {
+  const res = await fetch("/admin/festivals/save", { method: "POST", headers: { "Content-Type": "application/json", "X-CSRF-Token": CSRF }, body: JSON.stringify(body) });
+  const d = await res.json().catch(() => ({ ok: false, error: "The server did not answer. Try again." }));
+  if (!d.ok) { err.textContent = d.error || "Could not save."; err.hidden = false; window.scrollTo({ top: 0, behavior: "smooth" }); return false; }
+  take(d); return true;
+}
+document.getElementById("add").onclick = () => {
+  rows.push({ key: "", name: "", bg: "#1f3a52", bg2: "#12263a", accent: "#e3b55a", ink: "#fdf8ec" });
+  changed(); draw();
+  const last = list.lastElementChild; last.scrollIntoView({ behavior: "smooth", block: "center" }); last.querySelector("input[type=text]").focus();
+};
+document.getElementById("save").onclick = async () => { if (await send({ festivals: rows })) toast("Saved. Live websites use the new colours straight away."); };
+document.getElementById("reset").onclick = async () => {
+  if (!confirm("Put back the starting list of festivals? Festivals you added will be removed.")) return;
+  if (await send({ reset: true })) toast("The starting list is back.");
+};
+window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+fetch("/admin/festivals/data").then((r) => r.json()).then(take);
+</script>
+</body></html>

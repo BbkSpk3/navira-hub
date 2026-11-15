@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Messages · Navira Hub</title><link rel="stylesheet" href="/static/admin.css"></head>
+<body class="msg-page">
+<header class="top">
+  <a class="home" href="/admin" title="All restaurants">← <span class="hide-sm">Restaurants</span></a>
+  <strong class="r-name">Messages &amp; channels</strong>
+  <span class="grow"></span>
+  <a class="btn quiet" href="/admin/logout">Log out</a>
+</header>
+<nav class="tabs msg-tabs" id="mTabs" role="tablist"></nav>
+<main id="mMain" class="msg-main"></main>
+<div id="toast" class="toast" role="status"></div>
+<script>const CSRF = {{ csrf|tojson }};</script>
+<script src="/static/messages.js"></script>
+</body></html>

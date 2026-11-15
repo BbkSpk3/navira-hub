@@ -1,0 +1,7 @@
+anthropic
+flask
+requests
+jinja2
+pillow
+gunicorn
+tzdata

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% if page %}{{ page_title }} · {% endif %}{{ s.name }}{% if s.tagline and not page %} · {{ s.tagline }}{% endif %}</title>
+<meta name="description" content="{{ s.seo.description or s.intro }}">
+<meta property="og:title" content="{{ s.name }}">
+<meta property="og:description" content="{{ s.seo.description or s.intro }}">
+{% if s.hero_image %}<meta property="og:image" content="{{ s.hero_image | photo }}">{% endif %}
+<meta name="theme-color" content="{{ d.bg }}">
+{% if s.logo %}<link rel="icon" href="{{ s.logo | photo }}">{% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ d.fonts_url }}&display=swap">
+<link rel="stylesheet" href="/site-assets/style.css?v={{ asset_v }}">
+<style>
+:root{
+  --brand: {{ d.brand }};
+  --accent: {{ d.accent }};
+  --bg: {{ d.bg }};
+  --text: {{ d.text }};
+  --on-brand: {{ d.on_brand }};
+  --on-accent: {{ d.on_accent }};
+  --display: {{ d.display | safe }};
+  --body: {{ d.body | safe }};
+  --radius: {{ d.radius }}px;
+}
+{% if d.custom_css %}/* custom design */
+{{ d.custom_css | safe }}{% endif %}
+</style>
+<script type="application/ld+json">{{ schema | safe }}</script>
+</head>
+<body class="{% if not mbar %}no-mbar {% endif %}style-{{ d.preset }} hero-{{ d.hero }} menu-{{ d.menu_base }} btn-{{ d.buttons }} nav-{{ d.nav }} offers-{{ d.offers_base }} motion-{{ d.motion }}{% if d.dark %} is-dark{% endif %}{% if page %} is-page{% endif %}" data-base="{{ base }}">
+
+<a class="skip" href="#menu">Skip to menu</a>
+
+{# A "Book a table" button: opens the website's own booking form, or the booking link. #}
+{% macro book(cls, label="Book a table") %}{% if d.booking == "popup" %}<button class="btn {{ cls }}" type="button" data-book>{{ label }}</button>{% elif d.booking == "link" %}<a class="btn {{ cls }}" href="{{ s.links.booking_url }}" target="_blank" rel="noopener">{{ label }}</a>{% endif %}{% endmacro %}
+{% macro orderbtn(cls, label="Order online") %}{% if order.main %}<a class="btn {{ cls }}" href="{{ order.main }}" target="_blank" rel="noopener">{{ label }}</a>{% endif %}{% endmacro %}
+{% set menu_href = (base ~ "menu/") if "menu" in site_pages else ("#menu" if not page else base ~ "#menu") %}
+{% macro T(key, field, default) %}{{ (d.titles.get(key) or {}).get(field) or default }}{% endmacro %}
+
+{% if festive_on and f.banner %}
+<a class="fest-bar fest-{{ "custom" if f.theme == "custom" else "set" }}"{% if fest_style %} style="{{ fest_style }}"{% endif %} href="#festive"><strong>{{ fest_label }}</strong><span>{{ f.title }}{% if f.dates %} · {{ f.dates }}{% endif %}</span><b aria-hidden="true">→</b></a>
+{% endif %}
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a class="brand" href="{% if page %}{{ base }}{% else %}#top{% endif %}" aria-label="{{ s.name }} home">
+      {% if s.logo %}<img src="{{ s.logo | photo }}" alt="{{ s.name }}">{% else %}<span>{{ s.name }}</span>{% endif %}
+    </a>
+    <nav class="links" aria-label="Main">
+      {% for href, label, cls in nav_links %}<a href="{{ href }}"{% if cls %} class="{{ cls }}"{% endif %}>{{ label }}</a>{% endfor %}
+    </nav>
+    <div class="nav-cta">
+      {% if d.nav_cta in ("both", "order") %}{{ orderbtn("ghost") }}{% endif %}
+      {% if d.nav_cta in ("both", "book") %}{{ book("solid") }}{% endif %}
+    </div>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- Mobile menu (opens from the ☰ button) -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <nav aria-label="Mobile">
+    {% for href, label, cls in nav_links %}<a href="{{ href }}">{{ label }}</a>{% endfor %}
+  </nav>
+  <div class="drawer-cta">
+    {{ book("solid") }}
+    {{ orderbtn("ghost", order.label) }}
+    {% if s.contact.phone %}<a class="btn ghost" href="tel:{{ s.contact.phone | tel }}">Call {{ s.contact.phone }}</a>{% endif %}
+  </div>
+  {% if socials %}<p class="drawer-social">{% for k, name, url in socials %}<a href="{{ url }}" target="_blank" rel="noopener">{{ name }}</a>{% endfor %}</p>{% endif %}
+  <p class="drawer-status" data-status><span class="dot"></span><span class="txt">&nbsp;</span></p>
+</div>
+
+<!-- ============ HERO ============ -->
+{% if not page %}
+<section class="hero{% if not s.hero_image %} no-photo{% endif %}">
+  {% if s.hero_image and d.hero != "plain" %}<img class="hero-bg" src="{{ s.hero_image | photo }}" alt="" fetchpriority="high">{% endif %}
+  <div class="wrap hero-in">
+    {% if s.tagline %}<p class="eyebrow">{{ s.tagline }}</p>{% endif %}
+    <h1>{{ s.headline or s.name }}</h1>
+    {% if s.intro %}<p class="lead">{{ s.intro }}</p>{% endif %}
+    {% if s.offers and "offers" in shown %}<a class="offer-chip" href="#offers" data-offers="{{ s.offers | tojson | forceescape }}" aria-live="polite"><span>{{ s.offers[0].title }}</span><em>{{ s.offers[0].text }}</em> <b aria-hidden="true">→</b></a>{% endif %}
+    <div class="ctas">
+      {{ book("solid lg") }}
+      {{ orderbtn("light lg") }}
+      {% if not d.booking and not order.main %}<a class="btn solid lg" href="{{ menu_href }}">See the menu</a>{% endif %}
+    </div>
+    <p class="status" data-status><span class="dot"></span><span class="txt">&nbsp;</span></p>
+  </div>
+</section>
+
+{% if d.marquee and (s.features or s.tagline) %}
+<div class="marquee" aria-hidden="true"><div class="track">
+  {% for _ in range(2) %}{% for x in s.features %}<span>{{ x.title }}</span>{% endfor %}{% if s.tagline %}<span>{{ s.tagline }}</span>{% endif %}{% if s.links.booking_url %}<span>Book a table</span>{% endif %}{% if order.main %}<span>Order online</span>{% endif %}{% endfor %}
+</div></div>
+{% endif %}
+{% else %}
+<!-- A page of its own: small heading instead of the big photo -->
+<section class="page-head">
+  <div class="wrap">
+    <a class="back" href="{{ base }}">← {{ s.name }}</a>
+    <h1>{{ page_title }}</h1>
+  </div>
+</section>
+{% endif %}
+
+{% if page == "book" %}
+<section class="book-page"><div class="wrap narrow"><div class="bk bks-{{ d.booking_style }}" id="bkInline" data-inline></div></div></section>
+{% elif page == "privacy" %}
+<section class="privacy"><div class="wrap narrow">{% for para in s.privacy.split("\n") if para.strip() %}<p>{{ para }}</p>{% endfor %}</div></section>
+{% endif %}
+
+{# ===== The sections below are printed in the order chosen in Design -> Sections ===== #}
+{% for sec in sections %}
+
+{% if sec.key == "festive" %}
+{% set fl = d.festive %}{% set f_bg = fl == "background" %}{% set f_noimg = fl in ("center", "banner", "frame", "stripe", "menu") %}
+<section class="festive fest-{{ "custom" if f.theme == "custom" else "set" }} fpos-{{ "top" if fl == "top" else "background" if f_bg else "side" }} flay-{{ fl }}" id="festive"{% if fest_style %} style="{{ fest_style }}"{% endif %}>
+  {% if f.image and f_bg %}<img class="fest-bg" src="{{ f.image | photo }}" alt="" loading="lazy">{% endif %}
+  <div class="wrap fest-in{% if not f.image or f_bg or f_noimg or fl == "top" %} no-img{% endif %}" data-reveal>
+    <div class="fest-copy">
+      <p class="eyebrow">{{ fest_label }}{% if f.dates %} · {{ f.dates }}{% endif %}</p>
+      <h2>{{ f.title }}</h2>
+      {% if f.text %}<p class="fest-text">{{ f.text }}</p>{% endif %}
+      {% if f["items"] %}
+      <ul class="fest-items">
+        {% for it in f["items"] %}<li><div><strong>{{ it.title }}</strong>{% if it.text %}<span>{{ it.text }}</span>{% endif %}</div>{% if it.price %}<b>{{ it.price }}</b>{% endif %}</li>{% endfor %}
+      </ul>
+      {% endif %}
+      <div class="ctas">
+        {% if f.button_text and f.button_url %}<a class="btn fest-btn" href="{{ f.button_url }}"{% if f.button_url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ f.button_text }}</a>
+        {% elif d.booking == "popup" %}<button class="btn fest-btn" type="button" data-book>Book your table</button>
+        {% elif s.links.booking_url %}<a class="btn fest-btn" href="{{ s.links.booking_url }}" target="_blank" rel="noopener">Book your table</a>
+        {% elif s.contact.phone %}<a class="btn fest-btn" href="tel:{{ s.contact.phone | tel }}">Call {{ s.contact.phone }}</a>{% endif %}
+      </div>
+    </div>
+    {% if f.image and not f_bg and not f_noimg %}<img class="fest-img" src="{{ f.image | photo }}" alt="{{ f.title }}" loading="lazy">{% endif %}
+  </div>
+</section>
+
+{% elif sec.key == "offers" %}
+<section class="offers lay-{{ d.offers }}" id="offers" aria-label="Offers" data-reveal>
+  <div class="wrap">
+    <div class="sec-head offers-head"><p class="eyebrow">{{ T("offers", "eyebrow", "Deals") }}</p><h2>{{ T("offers", "title", "Offers") }}</h2></div>
+    <div class="offers-in">
+      {% for o in s.offers %}
+      {% set pos = o.image_pos if o.image_pos in image_pos else "top" %}
+      <div class="offer{% if o.image %} has-img img-{{ pos }}{% endif %}" data-reveal>
+        {% if o.image %}<img class="offer-img" src="{{ o.image | photo }}" alt="" loading="lazy">{% endif %}
+        <div class="offer-body">
+          <p class="eyebrow">Offer {{ "%02d" % loop.index }}</p><strong>{{ o.title }}</strong><span>{{ o.text }}</span>
+          {% if o.button_url %}<a class="btn offer-btn" href="{{ o.button_url }}"{% if o.button_url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ o.button_text or "Find out more" }}</a>
+          {% elif o.button_text and d.booking == "popup" %}<button class="btn offer-btn" type="button" data-book>{{ o.button_text }}</button>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% elif sec.key == "about" %}
+<section class="about lay-{{ d.about }}" id="about">
+  <div class="wrap about-in{% if not s.about_image %} no-img{% endif %}" data-reveal>
+    {% if s.about_image %}<img class="about-img" src="{{ s.about_image | photo }}" alt="Inside {{ s.name }}" loading="lazy">{% endif %}
+    <div>
+      <p class="eyebrow">{{ T("about", "eyebrow", "About us") }}</p>
+      <h2>{{ T("about", "title", "Welcome to " ~ s.name) }}</h2>
+      <p>{{ s.about or s.intro }}</p>
+      {{ book("solid", "Reserve your table") }}
+    </div>
+  </div>
+</section>
+
+{% elif sec.key == "features" %}
+<section class="features-sec lay-{{ d.features }}" id="features">
+  <div class="wrap">
+    {% if (d.titles.get("features") or {}).get("title") %}<div class="sec-head"><p class="eyebrow">{{ T("features", "eyebrow", "") }}</p><h2>{{ T("features", "title", "") }}</h2></div>{% endif %}
+    <div class="features">
+      {% for x in s.features %}
+      <article class="feature{% if x.image %} img-{{ x.image_pos if x.image_pos in image_pos else "top" }}{% endif %}" data-reveal>
+        {% if x.image %}<img src="{{ x.image | photo }}" alt="" loading="lazy">{% endif %}
+        <div class="feature-body"><h3>{{ x.title }}</h3>
+        <p>{{ x.text }}</p></div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% elif sec.key == "menu" and sec.teaser %}
+<section class="menu teaser" id="menu">
+  <div class="wrap" data-reveal>
+    <div class="sec-head">
+      <p class="eyebrow">{{ T("menu", "eyebrow", "Our food") }}</p>
+      <h2>{{ T("menu", "title", "Menu") }}</h2>
+      <p class="teaser-cats">{% for c in s.menu[:10] %}<span>{{ c.category }}</span>{% endfor %}</p>
+      <a class="btn solid lg" href="{{ base }}menu/">See the full menu</a>
+    </div>
+  </div>
+</section>
+
+{% elif sec.key == "menu" %}
+<section class="menu lay-{{ d.menu }}" id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">{{ T("menu", "eyebrow", "Our food") }}</p>
+      <h2>{{ T("menu", "title", "Menu") }}</h2>
+      {% if s.menu_note %}<p class="muted">{{ s.menu_note }}</p>{% endif %}
+    </div>
+    <div class="menu-tools mnav-{{ d.menu_nav }}">
+      <div class="cats-wrap">
+        {% if d.menu_nav == "burger" %}<button type="button" class="cats-toggle" aria-expanded="false" aria-controls="menuCats"><span class="cats-ic" aria-hidden="true"><i></i><i></i><i></i></span><span class="cats-now">All sections</span></button>{% endif %}
+        <button type="button" class="cats-arrow prev" aria-label="Earlier menu sections" hidden>‹</button>
+        <div class="cats" id="menuCats" role="group" aria-label="Menu sections">
+          <button type="button" class="cat" data-cat="all" aria-pressed="true">All</button>
+          {% for c in s.menu %}<button type="button" class="cat" data-cat="c{{ loop.index }}" aria-pressed="false">{{ c.category }}</button>{% endfor %}
+        </div>
+        <button type="button" class="cats-arrow next" aria-label="More menu sections" hidden>›</button>
+      </div>
+      <input class="search" type="search" placeholder="Search the menu…" aria-label="Search the menu">
+    </div>
+    <div class="menu-body">
+      {% for c in s.menu %}
+      <div class="mcat{% if c.image %} has-photo{% endif %}" data-cat="c{{ loop.index }}">
+        {% if c.image %}<img class="mcat-img" src="{{ c.image | photo }}" alt="{{ c.category }}" loading="lazy">{% endif %}
+        <div class="mcat-head"><h3>{{ c.category }}</h3>
+        {% if c.note %}<p class="muted small">{{ c.note }}</p>{% endif %}</div>
+        <div class="dishes">
+          {% for it in c["items"] %}
+          <div class="dish{% if it.image %} has-photo{% endif %}" data-text="{{ (it.name ~ ' ' ~ (it.description or '')) | lower }}">
+            {% if it.image %}<img class="dish-img" src="{{ it.image | photo }}" alt="{{ it.name }}" loading="lazy">{% endif %}
+            <div class="dish-body">
+            <div class="dish-top"><h4>{{ it.name }}{% for t in it.tags or [] %} <span class="tag" title="{{ tag_names.get(t, t) }}">{{ t }}</span>{% endfor %}</h4><span class="price">{{ it.price | money }}</span></div>
+            {% if it.description %}<p>{{ it.description }}</p>{% endif %}
+            {% if it.allergens %}<p class="allergens">Contains: {{ it.allergens | join(", ") }}</p>{% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+      <p class="empty" hidden>No dishes match your search.</p>
+    </div>
+  </div>
+</section>
+
+{% elif sec.key == "gallery" %}
+<section class="gallery lay-{{ d.gallery }}{% if sec.teaser %} teaser{% endif %}" id="gallery">
+  <div class="wrap">
+    <div class="sec-head" data-reveal><p class="eyebrow">{{ T("gallery", "eyebrow", "Take a look") }}</p><h2>{{ T("gallery", "title", "Gallery") }}</h2></div>
+    <div class="slide-wrap">
+      {% if d.gallery in ("slider", "strip") and not sec.teaser %}<button type="button" class="slide-arrow prev" aria-label="Earlier photos">‹</button>{% endif %}
+      <div class="grid"{% if d.gallery == "slider" and not sec.teaser %} data-autoslide="4500"{% endif %} data-reveal>
+        {% for g in (s.gallery[:4] if sec.teaser else s.gallery) %}<button type="button" class="g" data-src="{{ g | photo }}" aria-label="Open photo {{ loop.index }}"><img src="{{ g | photo }}" alt="Photo {{ loop.index }} at {{ s.name }}" loading="lazy"></button>{% endfor %}
+      </div>
+      {% if d.gallery in ("slider", "strip") and not sec.teaser %}<button type="button" class="slide-arrow next" aria-label="More photos">›</button>{% endif %}
+    </div>
+    {% if sec.teaser %}<p class="center"><a class="btn solid" href="{{ base }}gallery/">See all photos</a></p>{% endif %}
+  </div>
+  <div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo">
+    <button type="button" class="lb-x" aria-label="Close">×</button>
+    <button type="button" class="lb-nav lb-prev" aria-label="Earlier photo">‹</button>
+    <img alt="">
+    <button type="button" class="lb-nav lb-next" aria-label="Next photo">›</button>
+    <p class="lb-count" aria-live="polite"></p>
+  </div>
+</section>
+
+{% elif sec.key == "reviews" %}
+<section class="reviews lay-{{ d.reviews }}" id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">{{ T("reviews", "eyebrow", "What guests say") }}</p>
+      {% if s.reviews_summary and s.reviews_summary.rating %}
+      <h2>{{ s.reviews_summary.rating }} <span class="stars">★★★★★</span></h2>
+      <p class="muted">{{ s.reviews_summary.count }} {{ s.reviews_summary.source }} reviews</p>
+      {% else %}<h2>{{ T("reviews", "title", "Reviews") }}</h2>{% endif %}
+    </div>
+    {% set sliding = d.reviews in ("slider", "carousel") %}
+    <div class="slide-wrap">
+      {% if sliding %}<button type="button" class="slide-arrow prev" aria-label="Earlier reviews">‹</button>{% endif %}
+      <div class="rev-grid"{% if sliding %} data-autoslide="5000"{% endif %}>
+        {% for r in s.reviews %}<blockquote data-reveal><span class="rev-stars" aria-label="5 stars">★★★★★</span><p>“{{ r.text }}”</p><cite><i aria-hidden="true">{{ (r.author or "G")[:1] }}</i>{{ r.author }}</cite></blockquote>{% endfor %}
+      </div>
+      {% if sliding %}<button type="button" class="slide-arrow next" aria-label="More reviews">›</button>{% endif %}
+    </div>
+    {% if s.links.google_reviews %}<p class="center rev-more"><a class="btn ghost" href="{{ s.links.google_reviews }}" target="_blank" rel="noopener">Read all reviews</a></p>{% endif %}
+  </div>
+</section>
+
+{% elif sec.key == "faq" %}
+<section class="faq lay-{{ d.faq }}" id="faq">
+  <div class="wrap{% if d.faq not in ("columns", "split", "grid", "cards") %} narrow{% endif %}">
+    <div class="sec-head"><p class="eyebrow">{{ T("faq", "eyebrow", "Good to know") }}</p><h2>{{ T("faq", "title", "Questions") }}</h2></div>
+    <div class="faq-list">{% for q in s.faq %}<details{% if d.faq in ("open", "grid") %} open{% endif %}><summary>{{ q.q }}</summary><p>{{ q.a }}</p></details>{% endfor %}</div>
+  </div>
+</section>
+
+{% elif sec.key == "order" %}
+<section class="order-sec" id="order">
+  <div class="wrap narrow order-in" data-reveal>
+    <p class="eyebrow">{{ T("order", "eyebrow", "Takeaway & delivery") }}</p>
+    <h2>{{ T("order", "title", "Order online") }}</h2>
+    {% if order.note %}<p class="order-note">{{ order.note }}</p>{% endif %}
+    <p class="ctas"><a class="btn solid lg order-main" href="{{ order.main }}" target="_blank" rel="noopener">{{ order.label }}</a></p>
+    {% if order.own and order.others %}
+    <p class="order-also"><span>Also on</span>{% for name, url in order.others %}<a href="{{ url }}" target="_blank" rel="noopener">{{ name }}</a>{% endfor %}</p>
+    {% elif order.others | length > 1 %}
+    <p class="order-also"><span>Also on</span>{% for name, url in order.others[1:] %}<a href="{{ url }}" target="_blank" rel="noopener">{{ name }}</a>{% endfor %}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% elif sec.key == "visit" %}
+{% set has_map = s.contact.address and d.visit != "nomap" %}
+<section class="visit lay-{{ d.visit }}" id="visit">
+  <div class="wrap visit-in{% if not has_map %} no-map{% endif %}" data-reveal>
+    <div class="v-head">
+      <p class="eyebrow">{{ T("visit", "eyebrow", "Visit us") }}</p>
+      <h2>{{ T("visit", "title", "Opening hours") }}</h2>
+    </div>
+    <div class="v-hours">
+      <ul class="hours">
+        {% for h in s.hours %}<li data-day="{{ h[0] }}"><span>{{ h[0] }}</span><span>{% if h[1] %}{{ h[1] | t12 }} – {{ h[2] | t12 }}{% else %}Closed{% endif %}</span></li>{% endfor %}
+      </ul>
+      {% if s.hours_note %}<p class="muted small">{{ s.hours_note }}</p>{% endif %}
+    </div>
+    <div class="v-contact">
+      <h3>Contact</h3>
+      <p>{{ s.contact.address }}{% if s.contact.address %}<br>{% endif %}
+      {% if s.contact.phone %}<a href="tel:{{ s.contact.phone | tel }}">{{ s.contact.phone }}</a><br>{% endif %}
+      {% if s.contact.email %}<a href="mailto:{{ s.contact.email }}">{{ s.contact.email }}</a>{% endif %}</p>
+      <p class="v-btns">
+        {% if s.contact.phone %}<a class="btn ghost" href="tel:{{ s.contact.phone | tel }}">Call us</a>{% endif %}
+        {% if directions %}<a class="btn ghost" href="{{ directions }}" target="_blank" rel="noopener">Get directions</a>{% endif %}
+        {% if s.contact.email %}<a class="btn ghost" href="mailto:{{ s.contact.email }}">Email us</a>{% endif %}
+      </p>
+      {% if socials %}<p class="social">{% for k, name, url in socials %}<a href="{{ url }}" target="_blank" rel="noopener">{{ name }}</a>{% endfor %}</p>{% endif %}
+    </div>
+    {% if has_map %}
+    <iframe class="map" title="Map to {{ s.name }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q={{ (s.name ~ ', ' ~ s.contact.address) | urlencode }}&output=embed"></iframe>
+    {% endif %}
+  </div>
+</section>
+
+{% elif sec.custom %}
+{# ----- a section you made yourself (Design -> Your own sections) ----- #}
+{% set c = sec.custom %}
+<section class="custom lay-{{ c.layout }}{% if c.band %} band-{{ c.band }}{% endif %}{% if c.image and c.layout == "background" %} has-bg{% endif %}" id="{{ sec.key }}">
+  {% if c.image and c.layout == "background" %}<img class="custom-bg" src="{{ c.image | photo }}" alt="" loading="lazy">{% endif %}
+  <div class="wrap custom-in{% if not c.image %} no-img{% endif %}" data-reveal>
+    <div class="custom-copy">
+      {% if c.eyebrow %}<p class="eyebrow">{{ c.eyebrow }}</p>{% endif %}
+      {% if c.title %}<h2>{{ c.title }}</h2>{% endif %}
+      {% if c.text %}{% for para in c.text.split("\n") if para.strip() %}<p>{{ para }}</p>{% endfor %}{% endif %}
+      {% if c["items"] and c.layout != "cards" %}
+      <ul class="custom-list">
+        {% for it in c["items"] %}<li><div><strong>{{ it.title }}</strong>{% if it.text %}<span>{{ it.text }}</span>{% endif %}</div>{% if it.price %}<b>{{ it.price }}</b>{% endif %}</li>{% endfor %}
+      </ul>
+      {% endif %}
+      {% if c.button_text and c.button_url %}<div class="ctas"><a class="btn solid" href="{{ c.button_url }}"{% if c.button_url.startswith('http') %} target="_blank" rel="noopener"{% endif %}>{{ c.button_text }}</a></div>{% endif %}
+    </div>
+    {% if c.image and c.layout not in ("cards", "background") %}<img class="custom-img" src="{{ c.image | photo }}" alt="{{ c.title }}" loading="lazy">{% endif %}
+  </div>
+  {% if c["items"] and c.layout == "cards" %}
+  <div class="wrap custom-cards">
+    {% for it in c["items"] %}
+    <article class="feature{% if it.image %} img-{{ it.image_pos if it.image_pos in image_pos else "top" }}{% endif %}" data-reveal>
+      {% if it.image %}<img src="{{ it.image | photo }}" alt="" loading="lazy">{% endif %}
+      <div class="feature-body"><h3>{{ it.title }}</h3>
+      {% if it.price %}<p class="card-price">{{ it.price }}</p>{% endif %}
+      {% if it.text %}<p>{{ it.text }}</p>{% endif %}</div>
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+
+{% endfor %}
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p><strong>{{ s.name }}</strong><br>{{ s.contact.address }}</p>
+    {% if socials %}<p class="foot-social">{% for k, name, url in socials %}<a href="{{ url }}" target="_blank" rel="noopener">{{ name }}</a>{% endfor %}</p>{% endif %}
+    <p class="muted small">© <span data-year></span> {{ s.name }}{% if "privacy" in site_pages %} · <a href="{{ base }}privacy/">Privacy</a>{% endif %}{% if credit[1] %} · {{ credit[0] }}<a href="https://naviratechnology.com" target="_blank" rel="noopener">{{ credit[1] }}</a>{% endif %}</p>
+  </div>
+</footer>
+
+<!-- Mobile action bar -->
+{% if mbar %}
+<div class="mbar">
+  {% for b in mbar %}{% if b.book %}<button class="{{ "main" if b.main }}" type="button" data-book>{{ b.label }}</button>{% else %}<a class="{{ "main" if b.main }}" href="{{ menu_href if b.menu else b.href }}"{% if b.ext %} target="_blank" rel="noopener"{% endif %}>{{ b.label }}</a>{% endif %}{% endfor %}
+</div>
+{% endif %}
+
+{% if d.booking == "popup" %}
+<!-- Table booking (runs on the Navira booking system) -->
+<div class="bk-modal bks-{{ d.booking_style }}" id="bkModal" role="dialog" aria-modal="true" aria-label="Book a table" hidden>
+  <div class="bk-sheet"><button class="bk-x" type="button" aria-label="Close booking" data-bk-close>×</button><div class="bk" id="bkPopup"></div></div>
+</div>
+<script>window.SITE_BOOKING = {{ book_cfg | safe }};</script>
+{% endif %}
+{% if cookie_text and not preview %}
+<div class="ck" id="ckBar" role="region" aria-label="Cookie notice" hidden>
+  <p>{{ cookie_text }}{% if "privacy" in site_pages %} <a href="{{ base }}privacy/">Privacy notice</a>{% endif %}</p>
+  <button class="btn" type="button" id="ckOk">OK</button>
+</div>
+{% endif %}
+<script>window.SITE_HOURS = {{ hours_json | safe }};</script>
+<script src="/site-assets/site.js?v={{ asset_v }}" defer></script>
+{% if chat_on %}<script src="/widget.js" data-restaurant="{{ rid }}" data-bottom="86" defer></script>{% endif %}
+{% if preview %}<div class="pv-badge" style="position:fixed;left:12px;bottom:78px;z-index:9999;background:#111;color:#fff;font:600 12px system-ui;padding:6px 10px;border-radius:6px;opacity:.85">Preview - not live yet</div>{% endif %}
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Backups &amp; tools · Navira Hub</title><link rel="stylesheet" href="/static/admin.css">
+<style>
+.sys{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.sys input[type=file]{max-width:100%}
+.sys .group{margin-top:0;min-width:0;overflow:hidden}
+.sys table{width:100%;border-collapse:collapse;font-size:14px}
+.sys th,.sys td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sys td.num,.sys th.num{text-align:right;font-variant-numeric:tabular-nums}
+.sys .scroll{overflow-x:auto}
+.sys form.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:10px}
+.sys form.row label{display:block;min-width:0;max-width:100%;font-size:12.5px;font-weight:600;color:var(--muted)}
+.sys form.row input[type=text]{display:block;height:38px;margin-top:4px;padding:0 10px;border:1px solid var(--line);border-radius:8px;font:inherit;min-width:0;width:200px;max-width:100%}
+.sys code{background:#eef0f3;padding:2px 6px;border-radius:5px;font-size:13px;overflow-wrap:anywhere}
+.over{color:var(--red);font-weight:700}
+</style></head>
+<body>
+<header class="top">
+  <a class="home" href="/admin" title="All restaurants">← <span class="hide-sm">Restaurants</span></a>
+  <strong class="r-name">Backups &amp; tools</strong>
+  <span class="grow"></span>
+  <a class="btn quiet" href="/admin/logout">Log out</a>
+</header>
+<main class="page sys">
+  {% if request.args.get('error') %}<p class="alert">{{ request.args.get('error') }}</p>{% endif %}
+  {% if request.args.get('done') %}<p class="alert ok">Backup saved: {{ request.args.get('done') }}</p>{% endif %}
+
+  <section class="group">
+    <h3>Numbers, last 30 days</h3>
+    <p class="hint">Counted without cookies. “Visitors” counts each person once a day. Bots and your own previews are not counted.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Restaurant</th><th class="num">Visitors</th><th class="num">Pages opened</th><th class="num">Chat messages</th><th class="num">Bookings</th><th class="num">AI replies this month</th></tr></thead>
+      <tbody>
+      {% for r in rows %}<tr><td><a href="/admin/r/{{ r.id }}">{{ r.name }}</a></td><td class="num">{{ r.visitors }}</td><td class="num">{{ r.views }}</td><td class="num">{{ r.chats }}</td><td class="num">{{ r.bookings }}</td>
+        <td class="num{% if r.limit and r.ai >= r.limit %} over{% endif %}">{{ r.ai }}{% if r.limit %} of {{ r.limit }}{% endif %}</td></tr>{% endfor %}
+      </tbody>
+    </table></div>
+    <p class="hint">Bookings here are the ones made by the website form and the AI. The full list is in the Navira booking system.</p>
+  </section>
+
+  <section class="group">
+    <h3>Backups</h3>
+    <p class="hint">{% if auto %}A backup of everything (all restaurants, photos, messages, festivals) is made once a day. The newest {{ keep }} are kept.{% else %}Automatic backups are switched off (AUTO_BACKUP=0).{% endif %}
+      They are saved on this server in <code>{{ data_dir }}/backups</code>. Download one now and then and keep it somewhere else, because a backup on the same server is lost if the server is lost.</p>
+    <form method="post" action="/admin/system/backup"><input type="hidden" name="csrf" value="{{ csrf }}"><button class="btn primary add-btn" type="submit">Back up now</button></form>
+    {% if backups %}<div class="scroll"><table style="margin-top:12px">
+      <thead><tr><th>Backup</th><th>Made</th><th class="num">Size</th><th></th></tr></thead>
+      <tbody>{% for b in backups %}<tr><td>{{ b.name }}</td><td>{{ b.when }}</td><td class="num">{{ b.mb }} MB</td><td><a class="btn sm" href="/admin/system/backup/{{ b.name }}">Download</a></td></tr>{% endfor %}</tbody>
+    </table></div>{% else %}<p class="muted">No backups yet. The first one is made within an hour of starting the app.</p>{% endif %}
+    <p class="hint">To put a backup back: stop the app, unzip the file into <code>{{ data_dir }}</code>, start the app.</p>
+  </section>
+
+  <section class="group">
+    <h3>Move a restaurant between computers</h3>
+    <p class="hint">Export: open a restaurant → menu → “Copy, export &amp; numbers” → Export. You get one zip with its website, photos and AI knowledge (no customer messages). Import that zip here, for example to bring a restaurant from your laptop to the server.</p>
+    <form class="row" method="post" action="/admin/import" enctype="multipart/form-data">
+      <input type="hidden" name="csrf" value="{{ csrf }}">
+      <label>Exported zip<input type="file" name="file" accept=".zip" required style="display:block;margin-top:6px"></label>
+      <label>Short name for the web address<input type="text" name="id" required pattern="[a-z0-9][a-z0-9\-]{1,39}" maxlength="40" placeholder="redlion"></label>
+      <label>New name (optional)<input type="text" name="name" maxlength="80" placeholder="Keep the name in the zip"></label>
+      <button class="btn" type="submit">Import</button>
+    </form>
+    <p class="hint">The imported restaurant is not live until you publish it. Its domain, Navira slug and channel IDs are left empty so it cannot answer for another restaurant.</p>
+  </section>
+
+  <section class="group">
+    <h3>Connections</h3>
+    <p class="status-line"><span class="dot {{ 'ok' if ai_ready else 'no' }}"></span>{{ 'AI key is set.' if ai_ready else 'AI key missing: add ANTHROPIC_API_KEY to the env file.' }}</p>
+    <p class="status-line"><span class="dot {{ 'ok' if meta_set else 'no' }}"></span>{{ 'Meta app (Facebook, Instagram, WhatsApp) is connected.' if meta_set else 'Meta app not connected (META_APP_SECRET and META_VERIFY_TOKEN). Only needed for Facebook, Instagram and WhatsApp.' }}</p>
+  </section>
+</main>
+</body></html>

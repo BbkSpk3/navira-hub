@@ -1,0 +1,150 @@
+{
+  "name": "The Red Lion",
+  "tagline": "Traditional pub & kitchen",
+  "headline": "Proper pub food in the heart of Wolverhampton",
+  "intro": "Home-cooked classics, real ales and a warm welcome. Dogs welcome in the bar.",
+  "about": "The Red Lion has been serving locals for over 50 years. Sunday roasts, live sport and a big beer garden.",
+  "logo": "",
+  "hero_image": "",
+  "about_image": "",
+  "theme": {
+    "style": "warm",
+    "color": "#7a1f1f",
+    "accent": "#d9a441"
+  },
+  "contact": {
+    "phone": "01902 000000",
+    "email": "hello@theredlion.co.uk",
+    "address": "1 High Street, Wolverhampton WV1 1AA"
+  },
+  "hours": [
+    [
+      "Monday",
+      "12:00",
+      "23:00"
+    ],
+    [
+      "Tuesday",
+      "12:00",
+      "23:00"
+    ],
+    [
+      "Wednesday",
+      "12:00",
+      "23:00"
+    ],
+    [
+      "Thursday",
+      "12:00",
+      "23:00"
+    ],
+    [
+      "Friday",
+      "12:00",
+      "01:00"
+    ],
+    [
+      "Saturday",
+      "12:00",
+      "01:00"
+    ],
+    [
+      "Sunday",
+      "12:00",
+      "22:00"
+    ]
+  ],
+  "hours_note": "Kitchen closes 1 hour before the bar.",
+  "links": {
+    "order_url": "",
+    "booking_url": "",
+    "facebook": "",
+    "instagram": "",
+    "google_reviews": ""
+  },
+  "chat": {},
+  "offers": [
+    {
+      "title": "Steak night",
+      "text": "2 steaks + a bottle of wine £35, every Thursday"
+    },
+    {
+      "title": "Sunday roast",
+      "text": "From £14, served 12pm - 6pm"
+    }
+  ],
+  "features": [
+    {
+      "title": "Beer garden",
+      "text": "Big sunny garden with heaters for colder nights.",
+      "image": ""
+    },
+    {
+      "title": "Live sport",
+      "text": "All the big games on 4 screens.",
+      "image": ""
+    },
+    {
+      "title": "Dog friendly",
+      "text": "Dogs welcome in the bar area.",
+      "image": ""
+    }
+  ],
+  "menu_note": "Please tell us about any allergies when you order.",
+  "menu": [
+    {
+      "category": "Mains",
+      "items": [
+        {
+          "name": "Fish and chips",
+          "price": 12.5,
+          "description": "Beer-battered cod, chips and mushy peas",
+          "allergens": [
+            "Fish",
+            "Gluten"
+          ]
+        },
+        {
+          "name": "Veggie burger",
+          "price": 10,
+          "description": "With chips and slaw",
+          "tags": [
+            "V"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Sunday roast",
+      "note": "Sundays only",
+      "items": [
+        {
+          "name": "Roast beef",
+          "price": 14,
+          "description": "Yorkshire pudding, roast potatoes, seasonal veg and gravy"
+        }
+      ]
+    }
+  ],
+  "gallery": [],
+  "reviews_summary": {
+    "rating": 4.5,
+    "count": 210,
+    "source": "Google"
+  },
+  "reviews": [
+    {
+      "text": "Best Sunday roast in town!",
+      "author": "Sam"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Are dogs allowed?",
+      "a": "Yes, in the bar area."
+    }
+  ],
+  "seo": {
+    "description": "The Red Lion, Wolverhampton - traditional pub food, Sunday roasts, real ales and live sport."
+  }
+}

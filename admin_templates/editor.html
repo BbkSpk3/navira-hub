@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ name }} · Navira Hub</title><link rel="stylesheet" href="/static/admin.css"></head>
+<body class="editor-page">
+<header class="top">
+  <button id="sideBtn" class="side-btn" type="button" aria-label="Show or hide the menu" title="Menu"><span></span><span></span><span></span></button>
+  <a class="home" href="/admin" title="All restaurants">← <span class="hide-sm">Restaurants</span></a>
+  <strong id="rName" class="r-name">{{ name }}</strong>
+  <span id="status" class="pill grey">Loading…</span>
+  <span class="grow"></span>
+  <a id="viewLive" class="btn" href="/s/{{ rid }}/" target="_blank" rel="noopener" hidden>View live</a>
+  <button id="publishBtn" class="btn primary" type="button">Publish</button>
+</header>
+
+<div class="workspace">
+  <aside class="side" aria-label="Settings menu"><nav id="sideNav"></nav></aside>
+  <div id="sideScrim" class="side-scrim"></div>
+  <section class="panel" aria-label="Editor">
+    <h2 id="panelTitle" class="panel-title"></h2>
+
+    <div id="chatPane" class="chat-pane">
+      <div id="chatLog" class="chat-log" aria-live="polite"></div>
+      <div id="chatSuggest" class="chat-suggest"></div>
+      <form id="chatForm" class="chat-form">
+        <div id="chatFiles" class="chat-files"></div>
+        <label class="sr-only" for="chatText">Message to the AI builder</label>
+        <textarea id="chatText" rows="2" placeholder="Type here… tell me about the restaurant, or what to change"></textarea>
+        <div class="ai-row">
+          <label class="btn quiet file-btn" title="Photos, menu PDF, Word or text files">📎 Add photos or files<input id="chatFile" type="file" multiple accept="image/*,application/pdf,.docx,.txt,.md,.csv" hidden></label>
+          <button id="chatReset" class="btn quiet sm" type="button" title="Clear this conversation (the website is not changed)">Start again</button>
+          <span class="grow"></span>
+          <button id="chatBtn" class="btn primary" type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+    <div id="tab" class="tab-body"></div>
+  </section>
+
+  <section class="preview" aria-label="Preview">
+    <div class="preview-bar">
+      <span class="muted">Preview of your draft</span><span class="grow"></span>
+      <button class="btn quiet sm" type="button" data-device="desktop" aria-pressed="true">Desktop</button>
+      <button class="btn quiet sm" type="button" data-device="mobile" aria-pressed="false">Mobile</button>
+      <a class="btn quiet sm" href="/admin/r/{{ rid }}/preview/" target="_blank" rel="noopener">Open ↗</a>
+    </div>
+    <div class="frame-wrap"><iframe id="frame" title="Website preview" src="/admin/r/{{ rid }}/preview/"></iframe></div>
+  </section>
+</div>
+
+<div id="saveBar" class="save-bar" hidden>
+  <span>You have changes that are not saved.</span>
+  <button id="discardBtn" class="btn quiet" type="button">Discard</button>
+  <button id="saveBtn" class="btn primary" type="button">Save changes</button>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script>const RID = {{ rid|tojson }}, CSRF = {{ csrf|tojson }};</script>
+<script src="/static/admin.js"></script>
+</body></html>
